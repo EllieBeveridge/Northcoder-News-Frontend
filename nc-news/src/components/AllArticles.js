@@ -6,7 +6,7 @@ const DB_URL = 'https://ncnewsellieb.herokuapp.com/api'
 
 class AllArticles extends Component {
   state = {
-    articles: ['all', 'articles', 'dummy', 'array', 'list']
+    articles: []
   }
 
   componentDidMount() {
@@ -45,8 +45,6 @@ class AllArticles extends Component {
         <ul>
 
           {this.state.articles.map((article, index) => {
-            console.log(article.created_by)
-            //console.log(article.created_by.username)
             return (
               <li key={index}>
                 <div className="title" ><Link to={`/articles/${article._id}`}>{article.title}</Link></div>
