@@ -16,3 +16,10 @@ export const fetchAllArticles = () => {
       return articles
     })
 }
+
+// export const fetchArticleById = () => {
+//   return axios.get(`${DB_URL}/articles/${article_id}`)
+//     .then((data) => {
+//       console.log(data)
+//     })
+// }

@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import * as api from '../api'
+import { Link } from 'react-router-dom'
 import './AllArticles.css';
+const DB_URL = 'https://ncnewsellieb.herokuapp.com/api'
 
 class AllArticles extends Component {
   state = {
@@ -43,12 +45,14 @@ class AllArticles extends Component {
         <ul>
 
           {this.state.articles.map((article, index) => {
+            console.log(article.created_by)
+            //console.log(article.created_by.username)
             return (
               <li key={index}>
-                <div className="title">{article.title}</div> <div className="topic">{article.belongs_to}</div>
-                <div className="postdeets">
-                  <p>Posted By: at {article.created_at} Comments: {article.comment_count}</p>
-                </div>
+                <div className="title" ><Link to={`/articles/${article._id}`}>{article.title}</Link></div>
+                <div className="topic">{article.belongs_to}</div>
+                <br></br>
+                <p><span>Posted By: at {article.created_at}</span> <span><Link to={`/articles/${article._id}/comments`}>Comments: {article.comment_count}</Link></span></p>
               </li>)
           })}
         </ul>
