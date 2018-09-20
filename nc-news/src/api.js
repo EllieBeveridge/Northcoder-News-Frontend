@@ -17,9 +17,16 @@ export const fetchAllArticles = () => {
     })
 }
 
-// export const fetchArticleById = () => {
-//   return axios.get(`${DB_URL}/articles/${article_id}`)
-//     .then((data) => {
-//       console.log(data)
-//     })
-// }
+export const fetchArticleById = (article_id) => {
+  return axios.get(`${DB_URL}/articles/${article_id}`)
+    .then(({ data: { article } }) => {
+      return article;
+    })
+}
+
+export const fetchAllComments = (article_id) => {
+  return axios.get(`${DB_URL}/articles/${article_id}/comments`)
+    .then(({ data: { comments } }) => {
+      return comments
+    })
+}

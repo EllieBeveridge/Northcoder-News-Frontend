@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import './App.css';
-import Articles from './components/Article';
 //import Topics from './components/Topics';
 import AllArticles from './components/AllArticles'
 import Article from './components/Article'
@@ -26,8 +25,7 @@ class App extends Component {
             </div>
             <Route exact path="/" render={({ match }) => <AllArticles match={match} currentUser={this.state.currentUser} />} />
             <Route path="/topics/:topic" render={({ match }) => <AllArticles match={match} currentUser={this.state.currentUser} />} />
-            {/* <Route path="/articles/:article_id" render={({ match }) => <Article match={match} currentUser={this.state.currentUser} />} /> */}
-            {/* //find out how to link the article id! */}
+            <Route path="/articles/:article_id" render={({ match }) => <Article match={match} currentUser={this.state.currentUser} />} />
             <Route path="/articles/:article_id/comments" render={({ match }) => <Comments match={match} currentUser={this.state.currentUser} />} />
             {/* <Route path="/topics" render={({ match }) => <Topics match={match} currentUser={this.state.currentUser} />} /> */}
             {/* <Route path="/topics/:topic" render={({ match }) => <Articles match={match} currentUser={this.state.currentUser} />} />

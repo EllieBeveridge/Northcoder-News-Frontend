@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import * as api from '../api'
 import { Link } from 'react-router-dom'
 import './AllArticles.css';
-const DB_URL = 'https://ncnewsellieb.herokuapp.com/api'
 
 class AllArticles extends Component {
   state = {
