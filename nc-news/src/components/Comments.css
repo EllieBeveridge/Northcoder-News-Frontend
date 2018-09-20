@@ -2,6 +2,7 @@ li {
   float: left;
 }
 
+
 .username {
   font-style: bold;
   color: gray;
@@ -9,4 +10,8 @@ li {
 
 .body-text {
   color: black; 
+}
+
+.votes {
+  float: left;
 }

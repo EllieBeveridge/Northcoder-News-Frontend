@@ -22,7 +22,7 @@ text-align: left;
 }
 
 .title {
-  float: left;
+  float: center;
   font-size: 50%;
  text-align: left;
  font-size: 100%;
@@ -33,4 +33,9 @@ text-align: left;
 .topic {
  float: right;
  color: gray;
+}
+
+.votes {
+  float: left;
+  text-align: left;
 }

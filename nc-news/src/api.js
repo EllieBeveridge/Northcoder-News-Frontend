@@ -30,3 +30,42 @@ export const fetchAllComments = (article_id) => {
       return comments
     })
 }
+
+export const upvoteArticle = (article_id => {
+  return axios.patch(`${DB_URL}/articles/${article_id}?vote=up`)
+    .then(({ data: { article } }) => {
+      return article
+    })
+
+})
+
+export const downvoteArticle = (article_id => {
+  return axios.patch(`${DB_URL}/articles/${article_id}?vote=down`)
+    .then(({ data: { article } }) => {
+      return article
+    })
+
+})
+
+export const upvoteComment = (comment_id => {
+  return axios.patch(`${DB_URL}/comments/${comment_id}?vote=up`)
+    .then(({ data: { comment } }) => {
+      return comment
+    })
+
+})
+
+export const downvoteComment = (comment_id => {
+  return axios.patch(`${DB_URL}/comments/${comment_id}?vote=down`)
+    .then(({ data: { comment } }) => {
+      return comment
+    })
+
+})
+
+export const postArticle = (userInput) => {
+  return axios.post(`${DB_URL}/topics/${topic}/articles`)
+    .then(({ data: { article } }) => {
+      return article
+    })
+}

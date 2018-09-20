@@ -26,12 +26,31 @@ class Article extends Component {
       })
   }
 
+  upvoteArticle = (article_id) => {
+    api.upvoteArticle(article_id)
+      .then(article => {
+        this.setState({ article })
+      })
+  }
+
+  downvoteArticle = (article_id) => {
+    api.downvoteArticle(article_id)
+      .then(article => {
+        this.setState({ article })
+      })
+  }
+
   render() {
     const article = this.state.article[0]
     if (article === undefined) { return null }
     return (
       <div>
         {article && <h1>{article.title}</h1>}
+        <div className="votes">{article.votes}
+          <br></br>
+          <button name="upvote" onClick={e => this.upvoteArticle(article._id)}>Yay :)</button>
+          <button name="downvote" onClick={e => this.downvoteArticle(article._id)}>Boo :)</button>
+        </div>
         <h3>Created By: {article.created_by.username}</h3>
         <br></br>
         <p>{article.body}</p>

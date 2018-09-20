@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import * as api from '../api'
-import { Link } from 'react-router-dom';
 
 class Comments extends Component {
   state = {
@@ -27,23 +26,39 @@ class Comments extends Component {
       })
   }
 
+  upvoteComment = (comment_id) => {
+    api.upvoteComment(comment_id)
+      .then(comment => {
+        this.setState({ comment })
+      })
+  }
+
+  downvoteComment = (comment_id) => {
+    api.downvoteComment(comment_id)
+      .then(comment => {
+        this.setState({ comment })
+      })
+  }
+
   render() {
     if (this.state.comments === undefined) { return null }
     return (
       <div>
         {this.state.comments.map((comment, index) => {
           return <li key={index}>
-            <Link to={`/api/comments/${comment._id}?vote=up`}>
-              <Link to={`/api/comments/${comment._id}?vote=down`}>Downvote</Link>
-              {comment.votes}
-              <p className="username">{comment.created_by}</p>
+            <div className="votes">{comment.votes}
               <br></br>
-              <p className="body-text">{comment.body}</p>
+              <button name="upvote" onClick={e => this.upvoteComment(comment._id)}>Yay :)</button>
+              <button name="downvote" onClick={e => this.downvoteComment(comment._id)}>Boo :)</button>
+            </div>
+            <p className="username">{comment.created_by}</p>
+            <br></br>
+            <p className="body-text">{comment.body}</p>
           </li>
-            })}
+        })}
       </div>
     );
-        }
-      }
-      
+  }
+}
+
 export default Comments;

@@ -38,14 +38,32 @@ class AllArticles extends Component {
       })
   }
 
+  upvoteArticle = (article_id) => {
+    api.upvoteArticle(article_id)
+      .then(article => {
+        this.setState({ article })
+      })
+  }
+
+  downvoteArticle = (article_id) => {
+    api.downvoteArticle(article_id)
+      .then(article => {
+        this.setState({ article })
+      })
+  }
+
   render() {
     return (
       <div className="main-articles-list">
         <ul>
-
           {this.state.articles.map((article, index) => {
             return (
               <li key={index}>
+                <div className="votes">{article.votes}
+                  <br></br>
+                  <button name="upvote" onClick={e => this.upvoteArticle(article._id)}>Yay :)</button>
+                  <button name="downvote" onClick={e => this.downvoteArticle(article._id)}>Boo :)</button>
+                </div>
                 <div className="title" ><Link to={`/articles/${article._id}`}>{article.title}</Link></div>
                 <div className="topic">{article.belongs_to}</div>
                 <br></br>
