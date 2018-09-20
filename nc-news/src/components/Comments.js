@@ -3,7 +3,9 @@ import * as api from '../api'
 
 class Comments extends Component {
   state = {
-    comments: []
+    comments: [],
+    voteChange: 0,
+    comment: {}
   }
 
   componentDidMount() {
@@ -26,19 +28,30 @@ class Comments extends Component {
       })
   }
 
-  upvoteComment = (comment_id) => {
-    api.upvoteComment(comment_id)
-      .then(comment => {
-        this.setState({ comment })
-      })
-  }
+  // upvoteComment = (comment_id) => {
+  //   api.upvoteComment(comment_id)
+  //     .then(comment => {
+  //       this.setState({ comment })
+  //     })
+  // }
 
-  downvoteComment = (comment_id) => {
-    api.downvoteComment(comment_id)
+  // downvoteComment = (comment_id) => {
+  //   api.downvoteComment(comment_id)
+  //     .then(comment => {
+  //       this.setState({ comment })
+  //     })
+  // }
+
+  handleVote = (id, direction) => {
+    api.voteOnComment(id, direction)
       .then(comment => {
-        this.setState({ comment })
+        this.setState({
+          comment,
+          voteChange: direction === 'up' ? 1 : direction === 'down' ? -1 : 0
+        })
       })
   }
+  // amend this for comment/comments stuff. also maybe change this so can only upvote /downvote once and can undo.
 
   render() {
     if (this.state.comments === undefined) { return null }
@@ -48,8 +61,9 @@ class Comments extends Component {
           return <li key={index}>
             <div className="votes">{comment.votes}
               <br></br>
-              <button name="upvote" onClick={e => this.upvoteComment(comment._id)}>Yay :)</button>
-              <button name="downvote" onClick={e => this.downvoteComment(comment._id)}>Boo :)</button>
+              <button name='up' onClick={() => this.handleVote(comment._id, 'up')}>Yay :)</button>
+              {/* <button name="upvote" onClick={e => this.upvoteComment(comment._id)}>Yay :)</button> */}
+              <button name="down" onClick={() => this.handleVote(comment._id, 'down')}>Boo :(</button>
             </div>
             <p className="username">{comment.created_by}</p>
             <br></br>

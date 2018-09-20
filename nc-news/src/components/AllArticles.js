@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import * as api from '../api'
 import { Link } from 'react-router-dom'
 import './AllArticles.css';
+import Topic from './Topic'
 
 class AllArticles extends Component {
   state = {
@@ -55,6 +56,7 @@ class AllArticles extends Component {
   render() {
     return (
       <div className="main-articles-list">
+        {this.props.match.params.topic && <Topic topic={this.props.match.params.topic} currentUser={this.props.currentUser} />}
         <ul>
           {this.state.articles.map((article, index) => {
             return (
@@ -67,7 +69,7 @@ class AllArticles extends Component {
                 <div className="title" ><Link to={`/articles/${article._id}`}>{article.title}</Link></div>
                 <div className="topic">{article.belongs_to}</div>
                 <br></br>
-                <p><span>Posted By: at {article.created_at}</span> <span><Link to={`/articles/${article._id}/comments`}>Comments: {article.comment_count}</Link></span></p>
+                <p><span>Posted By: {article.created_by.username} at {article.created_at}</span> <span><Link to={`/articles/${article._id}/comments`}>Comments: {article.comment_count}</Link></span></p>
               </li>)
           })}
         </ul>

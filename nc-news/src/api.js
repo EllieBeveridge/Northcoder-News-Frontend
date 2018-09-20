@@ -47,25 +47,29 @@ export const downvoteArticle = (article_id => {
 
 })
 
-export const upvoteComment = (comment_id => {
-  return axios.patch(`${DB_URL}/comments/${comment_id}?vote=up`)
+export const voteOnComment = ((comment_id, direction) => {
+  return axios.patch(`${DB_URL}/comments/${comment_id}?vote=${direction}`)
     .then(({ data: { comment } }) => {
       return comment
     })
-
 })
+//add direction as a parameter and change to variable
 
-export const downvoteComment = (comment_id => {
-  return axios.patch(`${DB_URL}/comments/${comment_id}?vote=down`)
-    .then(({ data: { comment } }) => {
-      return comment
-    })
+// export const downvoteComment = (comment_id => {
+//   return axios.patch(`${DB_URL}/comments/${comment_id}?vote=down`)
+//     .then(({ data: { comment } }) => {
+//       return comment
+//     })
 
-})
+// })
 
-export const postArticle = (userInput) => {
-  return axios.post(`${DB_URL}/topics/${topic}/articles`)
+export const postArticle = (topic, newArticle) => {
+  return axios.post(`${DB_URL}/topics/${topic}/articles`, newArticle)
     .then(({ data: { article } }) => {
+      console.log(article)
       return article
+    })
+    .catch(error => {
+      return console.log(error)
     })
 }
