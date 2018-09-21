@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
 import * as api from '../api'
 
+//This is linked from AllArticles
+
 class Topic extends Component {
 
   state = {
     title: '',
-    created_by: this.props.currentUser,
+    created_by: '',
     body: ''
   }
 
@@ -24,7 +26,7 @@ class Topic extends Component {
     // .then(console.log)
     this.setState({
       title: '',
-      created_by: this.state.currentUser,
+      created_by: this.props.currentUser,
       body: ''
     })
   }
@@ -43,11 +45,12 @@ class Topic extends Component {
   }
 
   render() {
+    console.log(this.props.currentUser)
     return (
       <div>
         <form onSubmit={this.handleSubmit}>
           <div>
-            {!this.state.created_by ? <h3>You must be logged in to post an article.</h3> : <h3>Post New Article as {this.state.currentUser.username}</h3>}
+            {!this.props.currentUser ? <h3>You must be logged in to post an article.</h3> : <h3>Post New Article as {this.props.currentUser.username}</h3>}
             Title:
             <input onChange={this.handleChange} value={this.state.title} name="title" />
             Body:

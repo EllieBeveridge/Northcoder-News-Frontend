@@ -3,6 +3,7 @@ import * as api from '../api'
 import { Link } from 'react-router-dom'
 import './AllArticles.css';
 import Topic from './Topic'
+import Vote from './Vote'
 
 class AllArticles extends Component {
   state = {
@@ -45,7 +46,7 @@ class AllArticles extends Component {
 
 
   componentDidUpdate(prevProps, prevState) {
-    if (prevProps.match.params.topic !== this.props.match.topic) {
+    if (prevProps.match.params.topic !== this.props.match.params.topic) {
       this.fetchArticlesByTopic(this.props.match.params.topic)
     } else if (prevProps !== this.props) {
       this.fetchAllArticles();
@@ -100,23 +101,28 @@ class AllArticles extends Component {
     //   //      push: true
     //   // push goes back 2 url addresses to avoid returning back to invalid url.
     // }} />
-    if (!this.state.articles) return <p>Loading Articles.....</p>;
+    const { articles } = this.state
+    if (!articles) return <p>Loading Articles.....</p>;
+    let sortedArticles = articles.sort((a, b) => b.votes - a.votes)
     return (
       <div className="main-articles-list">
         {this.props.match.params.topic && <Topic topic={this.props.match.params.topic} currentUser={this.props.currentUser} />}
         <ul>
-          {this.state.articles.map((article, index) => {
+          {sortedArticles.map((article, index) => {
             return (
               <li key={index}>
-                <div className="votes">{article.votes}
+                <Vote obj={article} type={"articles"} />
+                {/* <div className="votes">{article.votes}
                   <br></br>
                   <button name='up' onClick={() => this.handleVote(article._id, 'up')}>Yay :)</button>
                   <button name="down" onClick={() => this.handleVote(article._id, 'down')}>Boo :(</button>
-                </div>
+                </div> */}
                 <div className="title" ><Link to={`/articles/${article._id}`}>{article.title}</Link></div>
                 <div className="topic">{article.belongs_to}</div>
                 <br></br>
-                <p><span>Posted By: {article.created_by.username} at {article.created_at}</span> <span><Link to={`/articles/${article._id}/comments`}>Comments: {article.comment_count}</Link></span></p>
+                <p><span>Posted By: <img src={article.created_by.avatar_url} height='15' width='15' alt={article.created_by.name} />
+                  <Link to={`/users/${article.created_by.username}`}>{article.created_by.username}</Link> at {article.created_at}</span>
+                  <span><Link to={`/articles/${article._id}/comments`}>Comments: {article.comment_count}</Link></span></p>
               </li>)
           })}
         </ul>

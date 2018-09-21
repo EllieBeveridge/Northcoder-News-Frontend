@@ -1,12 +1,14 @@
 import React, { Component } from 'react';
 import * as api from '../api'
 
+//This is found in render on the Comments component
+
 class Comment extends Component {
   state = {
     body: '',
-    currentUser: this.props.currentUser,
     created_by: ''
   }
+
 
   handleChange = event => {
     const { name, value } = event.target
@@ -19,10 +21,9 @@ class Comment extends Component {
     event.preventDefault()
     const newComment = {
       body: this.state.body,
-      created_by: this.state.currentUser._id
+      created_by: this.props.currentUser._id
     }
     this.postNewComment(newComment)
-    console.log(this.state.currentUser.username, '<<<<Current user', newComment)
     this.setState({
       body: ''
     })
@@ -32,7 +33,6 @@ class Comment extends Component {
     const { article_id } = this.props
     api.postComment(article_id, newComment)
       .then((newComment) => {
-        console.log(newComment, '*** inside .then')
         this.setState({ newComment })
       })
       .catch(err => {
@@ -45,7 +45,7 @@ class Comment extends Component {
     return (
       <div>
         <form onSubmit={this.handleSubmit}>
-          {this.state.currentUser ? <h3>Post New Comment as {this.state.currentUser.username}</h3> : <h3>You must be logged in to post a comment.</h3>}
+          {this.props.currentUser ? <h3>Post New Comment as {this.props.currentUser.username}</h3> : <h3>You must be logged in to post a comment.</h3>}
           Body:
           <input type="text" onChange={this.handleChange} value={this.state.body} name="body" />
           <input type="submit" value="Submit" />

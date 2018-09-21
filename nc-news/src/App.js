@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
 import './App.css';
+import * as api from './api'
 //import Topics from './components/Topics';
 import AllArticles from './components/AllArticles'
 import Article from './components/Article'
 import Comments from './components/Comments'
 import Login from './components/Login'
 import Logout from './components/Logout'
+import User from './components/User'
 import { Link, Route, BrowserRouter } from 'react-router-dom';
 
 class App extends Component {
@@ -20,11 +22,13 @@ class App extends Component {
     })
   }
 
-  setCurrentUser = (user) => {
-    console.log(this.state.currentUser)
-    this.setState({
-      currentUser: user
-    })
+  setCurrentUser = (username) => {
+    api.loginUser(username)
+      .then(user => {
+        this.setState({
+          currentUser: user
+        })
+      })
   }
 
   logoutCurrentUser = () => {
@@ -33,8 +37,9 @@ class App extends Component {
     })
   }
 
-  setLocalStorage = (user) => {
-    localStorage.setItem('loggedInUser', user)
+  setLocalStorage = (username) => {
+    console.log(username, 'local storage')
+    localStorage.setItem('loggedInUser', username)
   }
 
   render() {
@@ -55,14 +60,11 @@ class App extends Component {
                 <li><Link to="/topics/coding">Coding</Link></li>
               </ul>
             </div>
-
+            <Route path="/users/:user_id" render={({ match }) => <User match={match} currentUser={this.state.currentUser} />} />
             <Route exact path="/" render={({ match }) => <AllArticles match={match} currentUser={this.state.currentUser} />} />
             <Route path="/topics/:topic" render={({ match }) => <AllArticles match={match} currentUser={this.state.currentUser} />} />
             <Route path="/articles/:article_id" render={({ match }) => <Article match={match} currentUser={this.state.currentUser} />} />
             <Route path="/articles/:article_id/comments" render={({ match }) => <Comments match={match} currentUser={this.state.currentUser} />} />
-            {/* <Route path="/topics" render={({ match }) => <Topics match={match} currentUser={this.state.currentUser} />} /> */}
-            {/* <Route path="/topics/:topic" render={({ match }) => <Articles match={match} currentUser={this.state.currentUser} />} />
-          <Route path="/topics/:topic" render={({ match }) => <Articles match={match} currentUser={this.state.currentUser} />} /> */}
             <Route exact path="/404" component={Error404} />
           </div>
         </div>

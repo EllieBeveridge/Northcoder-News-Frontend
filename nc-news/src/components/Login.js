@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import * as api from '../api'
+//import * as api from '../api'
 
 class Login extends Component {
 
@@ -16,13 +16,9 @@ class Login extends Component {
 
   handleSubmit = (event) => {
     event.preventDefault()
-    const newUser = { ...this.state }
-    api.loginUser(newUser)
-      .then((user) => {
-        console.log(user)
-        this.props.setCurrentUser(user)
-        this.props.setLocalStorage(user)
-      }).catch(console.log)
+    const username = { ...this.state }
+    this.props.setCurrentUser(username)
+    this.props.setLocalStorage(username)
     this.setState({
       username: ''
     })

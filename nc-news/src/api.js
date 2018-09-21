@@ -61,11 +61,18 @@ export const fetchAllComments = (article_id) => {
 
 // })
 
-export const voteOnComment = ((comment_id, direction) => {
-  return axios.patch(`${DB_URL}/comments/${comment_id}?vote=${direction}`)
-    .then(({ data: { comment } }) => {
-      return comment
-    })
+export const voteOnComponent = ((id, direction, type) => {
+  if (type === 'comments') {
+    return axios.patch(`${DB_URL}/${type}/${id}?vote=${direction}`)
+      .then(({ data: { comment } }) => {
+        return comment
+      })
+  } else if (type === 'articles') {
+    return axios.patch(`${DB_URL}/${type}/${id}?vote=${direction}`)
+      .then(({ data: { article } }) => {
+        return article
+      })
+  }
 })
 
 export const voteOnArticle = ((article_id, direction) => {
@@ -119,5 +126,12 @@ export const deleteComment = (comment_id) => {
   return axios.delete(`${DB_URL}/comments/${comment_id}`)
     .then(({ data: { comment } }) => {
       return comment
+    })
+}
+
+export const getUserInfo = (username) => {
+  return axios.get(`${DB_URL}/users/${username}`)
+    .then(({ data: { user } }) => {
+      return user
     })
 }
