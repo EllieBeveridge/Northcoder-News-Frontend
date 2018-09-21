@@ -41,12 +41,11 @@ class Comment extends Component {
 
   }
 
-
   render() {
     return (
       <div>
         <form onSubmit={this.handleSubmit}>
-          {!this.state.currentUser ? <h3>You must be logged in to post a comment.</h3> : <h3>Post New Comment as {this.state.currentUser.username}</h3>}
+          {this.state.currentUser ? <h3>Post New Comment as {this.state.currentUser.username}</h3> : <h3>You must be logged in to post a comment.</h3>}
           Body:
           <input type="text" onChange={this.handleChange} value={this.state.body} name="body" />
           <input type="submit" value="Submit" />

@@ -5,6 +5,7 @@ import AllArticles from './components/AllArticles'
 import Article from './components/Article'
 import Comments from './components/Comments'
 import Login from './components/Login'
+import Logout from './components/Logout'
 import { Link, Route, BrowserRouter } from 'react-router-dom';
 
 class App extends Component {
@@ -12,15 +13,28 @@ class App extends Component {
     currentUser: null
   }
 
-
-  setCurrentUser = (username) => {
+  componentDidMount() {
+    const storage = localStorage.getItem('loggedInUser')
     this.setState({
-      currentUser: username
+      currentUser: storage === "null" ? null : storage
     })
   }
 
-  setLocalStorage = (username) => {
-    localStorage.setItem('loggedInUser', username)
+  setCurrentUser = (user) => {
+    console.log(this.state.currentUser)
+    this.setState({
+      currentUser: user
+    })
+  }
+
+  logoutCurrentUser = () => {
+    this.setState({
+      currentUser: null
+    })
+  }
+
+  setLocalStorage = (user) => {
+    localStorage.setItem('loggedInUser', user)
   }
 
   render() {
@@ -31,7 +45,7 @@ class App extends Component {
             <div className="grid-item-home"><Link to="/">Home</Link></div>
             <br></br>
             <div>
-              {!this.state.currentUser && <Login setCurrentUser={this.setCurrentUser} setLocalStorage={this.setLocalStorage} currentUser={this.state.currentUser} />}
+              {!this.state.currentUser ? <Login setCurrentUser={this.setCurrentUser} setLocalStorage={this.setLocalStorage} currentUser={this.state.currentUser} /> : <Logout currentUser={this.state.currentUser} logoutCurrentUser={this.logoutCurrentUser} setLocalStorage={this.setLocalStorage} />}
               {this.state.currentUser && <h3>Logged in as {this.state.currentUser.username}</h3>}
             </div>
             <div className="grid-item2">

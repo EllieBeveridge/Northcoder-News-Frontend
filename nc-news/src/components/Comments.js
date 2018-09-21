@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Comment from './Comment'
+//import CommentDeleter from './CommentDeleter'
 import * as api from '../api'
 
 class Comments extends Component {
@@ -41,6 +42,10 @@ class Comments extends Component {
   }
   // amend this for comment/comments stuff. also maybe change this so can only upvote /downvote once and can undo.
 
+  deleteComment = (comment_id) => {
+    api.deleteComment(comment_id)
+  }
+
   render() {
     if (this.state.comments === undefined) { return null }
     return (
@@ -57,6 +62,7 @@ class Comments extends Component {
             <p className="username">{comment.created_by}</p>
             <br></br>
             <p className="body-text">{comment.body}</p>
+            <button name="delete" onClick={() => this.deleteComment(comment._id)}>Delete Comment</button>
           </li>
         })}
       </div>

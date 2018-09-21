@@ -114,3 +114,10 @@ export const loginUser = (user) => {
       return user
     })
 }
+
+export const deleteComment = (comment_id) => {
+  return axios.delete(`${DB_URL}/comments/${comment_id}`)
+    .then(({ data: { comment } }) => {
+      return comment
+    })
+}
