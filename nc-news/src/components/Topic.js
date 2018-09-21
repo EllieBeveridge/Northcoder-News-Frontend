@@ -5,7 +5,7 @@ class Topic extends Component {
 
   state = {
     title: '',
-    created_by: '',
+    created_by: this.props.currentUser,
     body: ''
   }
 
@@ -24,7 +24,7 @@ class Topic extends Component {
     // .then(console.log)
     this.setState({
       title: '',
-      created_by: '',
+      created_by: this.state.currentUser,
       body: ''
     })
   }
@@ -37,7 +37,7 @@ class Topic extends Component {
         this.setState({ newArticle })
       })
       .catch(err => {
-        console.log(err, 'Article not posted. Double check you have input an existing user')
+        console.log(err, 'Article not posted.')
       })
 
   }
@@ -46,14 +46,14 @@ class Topic extends Component {
     return (
       <div>
         <form onSubmit={this.handleSubmit}>
-          <h3>Post New Article</h3>
-          Title:
-          <input onChange={this.handleChange} value={this.state.title} name="title" />
-          Created By:
-          <input type="text" onChange={this.handleChange} value={this.state.created_by} name="created_by" />
-          Body:
-          <input type="text" onChange={this.handleChange} value={this.state.body} name="body" />
-          <input type="submit" value="Submit" />
+          <div>
+            {!this.state.created_by ? <h3>You must be logged in to post an article.</h3> : <h3>Post New Article as {this.state.currentUser.username}</h3>}
+            Title:
+            <input onChange={this.handleChange} value={this.state.title} name="title" />
+            Body:
+            <input type="text" onChange={this.handleChange} value={this.state.body} name="body" />
+            <input type="submit" value="Submit" />
+          </div>
         </form>
       </div>
     );

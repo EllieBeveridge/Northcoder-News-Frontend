@@ -4,18 +4,36 @@ import './App.css';
 import AllArticles from './components/AllArticles'
 import Article from './components/Article'
 import Comments from './components/Comments'
+import Login from './components/Login'
 import { Link, Route, BrowserRouter } from 'react-router-dom';
 
 class App extends Component {
   state = {
     currentUser: null
   }
+
+
+  setCurrentUser = (username) => {
+    this.setState({
+      currentUser: username
+    })
+  }
+
+  setLocalStorage = (username) => {
+    localStorage.setItem('loggedInUser', username)
+  }
+
   render() {
     return (
       <BrowserRouter>
         <div className="App">
           <div className="grid-container">
             <div className="grid-item-home"><Link to="/">Home</Link></div>
+            <br></br>
+            <div>
+              {!this.state.currentUser && <Login setCurrentUser={this.setCurrentUser} setLocalStorage={this.setLocalStorage} currentUser={this.state.currentUser} />}
+              {this.state.currentUser && <h3>Logged in as {this.state.currentUser.username}</h3>}
+            </div>
             <div className="grid-item2">
               <ul className="topics-list">
                 <li><Link to="/topics/cooking">Cooking</Link></li>
@@ -23,6 +41,7 @@ class App extends Component {
                 <li><Link to="/topics/coding">Coding</Link></li>
               </ul>
             </div>
+
             <Route exact path="/" render={({ match }) => <AllArticles match={match} currentUser={this.state.currentUser} />} />
             <Route path="/topics/:topic" render={({ match }) => <AllArticles match={match} currentUser={this.state.currentUser} />} />
             <Route path="/articles/:article_id" render={({ match }) => <Article match={match} currentUser={this.state.currentUser} />} />
@@ -30,12 +49,20 @@ class App extends Component {
             {/* <Route path="/topics" render={({ match }) => <Topics match={match} currentUser={this.state.currentUser} />} /> */}
             {/* <Route path="/topics/:topic" render={({ match }) => <Articles match={match} currentUser={this.state.currentUser} />} />
           <Route path="/topics/:topic" render={({ match }) => <Articles match={match} currentUser={this.state.currentUser} />} /> */}
+            <Route exact path="/404" component={Error404} />
           </div>
         </div>
       </BrowserRouter >
     );
   }
-
 }
+
+function Error404() {
+  return <div>
+    <h3>ERROR! 404 NOT FOUND</h3>
+    {/* <Link to={props.locations.state.from}><img height='300' width='500' src='https://www.google.com/url?sa=i&rct=j&q=&esrc=s&source=images&cd=&cad=rja&uact=8&ved=2ahUKEwi_jNve5MvdAhWv4IUKHVqxDCAQjRx6BAgBEAU&url=https%3A%2F%2Fwww.lifewire.com%2F404-not-found-error-explained-2622936&psig=AOvVaw2Zm0LcQf5CBV7NDxdxy9jo&ust=1537608651977662' /></Link> */}
+  </div>
+}
+
 
 export default App;

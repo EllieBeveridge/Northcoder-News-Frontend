@@ -4,7 +4,8 @@ import Comments from './Comments'
 
 class Article extends Component {
   state = {
-    article: ''
+    article: '',
+    voteChange: 0
   }
 
   componentDidMount() {
@@ -26,17 +27,27 @@ class Article extends Component {
       })
   }
 
-  upvoteArticle = (article_id) => {
-    api.upvoteArticle(article_id)
-      .then(article => {
-        this.setState({ article })
-      })
-  }
+  // upvoteArticle = (article_id) => {
+  //   api.upvoteArticle(article_id)
+  //     .then(article => {
+  //       this.setState({ article })
+  //     })
+  // }
 
-  downvoteArticle = (article_id) => {
-    api.downvoteArticle(article_id)
+  // downvoteArticle = (article_id) => {
+  //   api.downvoteArticle(article_id)
+  //     .then(article => {
+  //       this.setState({ article })
+  //     })
+  // }
+
+  handleVote = (id, direction) => {
+    api.voteOnArticle(id, direction)
       .then(article => {
-        this.setState({ article })
+        this.setState({
+          article
+          //voteChange: direction === 'up' ? 1 : direction === 'down' ? -1 : 0
+        })
       })
   }
 
@@ -48,8 +59,8 @@ class Article extends Component {
         {article && <h1>{article.title}</h1>}
         <div className="votes">{article.votes}
           <br></br>
-          <button name="upvote" onClick={e => this.upvoteArticle(article._id)}>Yay :)</button>
-          <button name="downvote" onClick={e => this.downvoteArticle(article._id)}>Boo :)</button>
+          <button name='up' onClick={() => this.handleVote(article._id, 'up')}>Yay :)</button>
+          <button name="down" onClick={() => this.handleVote(article._id, 'down')}>Boo :(</button>
         </div>
         <h3>Created By: {article.created_by.username}</h3>
         <br></br>
