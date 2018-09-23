@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import * as api from '../api.js'
+import PropTypes from 'prop-types';
+import './Vote.css'
 
 class Vote extends Component {
 
@@ -17,15 +19,23 @@ class Vote extends Component {
 
   render() {
     return (
-      <div>
-        <div className="votes">{this.props.obj.votes + this.state.voteCount}
+      <div >
+        <div className="votes">
+          <i className="fas fa-angle-up" onClick={() => this.handleVote(this.props.obj._id, 'up', this.props.type)}></i>
           <br></br>
-          <button name='up' onClick={() => this.handleVote(this.props.obj._id, 'up', this.props.type)}>Yay :)</button>
-          <button name="down" onClick={() => this.handleVote(this.props.obj._id, 'down', this.props.type)}>Boo :(</button>
+          <span className="badge badge-primary badge-pill">{this.props.obj.votes + this.state.voteCount}</span>
+          <br></br>
+          <i className="fas fa-angle-down" onClick={() => this.handleVote(this.props.obj._id, 'down', this.props.type)}></i>
         </div>
       </div>
     );
   }
+
 }
 
 export default Vote;
+
+Vote.propTypes = {
+  obj: PropTypes.object,
+  type: PropTypes.string
+}

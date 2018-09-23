@@ -102,7 +102,7 @@ export const postArticle = (topic, newArticle) => {
     })
 }
 
-export const postComment = (article_id, newComment) => {
+export const postComment = (newComment, article_id) => {
   return axios.post(`${DB_URL}/articles/${article_id}/comments`, newComment)
     .then(({ data: { comment } }) => {
       console.log(comment)
@@ -117,7 +117,6 @@ export const loginUser = (user) => {
   const { username } = user
   return axios.get(`${DB_URL}/users/${username}`)
     .then(({ data: { user } }) => {
-      console.log(user, '<<<<returned user')
       return user
     })
 }

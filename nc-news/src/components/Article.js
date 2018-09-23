@@ -3,6 +3,8 @@ import * as api from '../api.js'
 import Comments from './Comments'
 import Vote from './Vote'
 import { Link } from 'react-router-dom'
+import PropTypes from 'prop-types';
+import Comment from './Comment'
 
 class Article extends Component {
   state = {
@@ -29,28 +31,15 @@ class Article extends Component {
       })
   }
 
-  // upvoteArticle = (article_id) => {
-  //   api.upvoteArticle(article_id)
-  //     .then(article => {
-  //       this.setState({ article })
-  //     })
-  // }
-
-  // downvoteArticle = (article_id) => {
-  //   api.downvoteArticle(article_id)
-  //     .then(article => {
-  //       this.setState({ article })
-  //     })
-  // }
-
-  handleVote = (id, direction) => {
-    api.voteOnArticle(id, direction)
-      .then(article => {
-        this.setState({
-          article
-          //voteChange: direction === 'up' ? 1 : direction === 'down' ? -1 : 0
-        })
+  postNewComment = (newComment, article_id) => {
+    api.postComment(newComment, article_id)
+      .then((comment) => {
+        this.setState({ comment })
       })
+      .catch(err => {
+        console.log(err)
+      })
+
   }
 
   render() {
@@ -60,22 +49,23 @@ class Article extends Component {
       <div>
         {article && <h1>{article.title}</h1>}
         <Vote obj={article} type={"articles"} />
-        {/* <div className="votes">{article.votes}
-          <br></br>
-          <button name='up' onClick={() => this.handleVote(article._id, 'up')}>Yay :)</button>
-          <button name="down" onClick={() => this.handleVote(article._id, 'down')}>Boo :(</button>
-        </div> */}
         <h3>Created By: <Link to={`/users/${article.created_by.username}`}>{article.created_by.username}</Link></h3>
         <br></br>
         <p>{article.body}</p>
         <br></br>
+        <Comment article_id={article._id} currentUser={this.props.currentUser} postNewComment={this.postNewComment} />
+        <br></br>
         Comments: {article.comment_count}
         <br></br>
         <Comments article_id={article._id} currentUser={this.props.currentUser} />
-        {console.log(this.props.currentUser)}
       </div >
     );
   }
 }
 
 export default Article;
+
+Article.propTypes = {
+  match: PropTypes.object,
+  currentUser: PropTypes.object
+}

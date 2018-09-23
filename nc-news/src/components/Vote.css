@@ -1,0 +1,24 @@
+span {
+  text-align: left;
+}
+
+
+.fa-angle-up {
+  float: center;
+  font-size: 1.8rem;
+  transition: 0.2s;
+}
+
+.fa-angle-up:hover {
+  font-size: 2rem;
+}
+
+.fa-angle-down {
+  float: center;
+  font-size: 1.8rem;
+  transition: 0.2s;
+} 
+
+.fa-angle-down:hover {
+  font-size: 2rem;
+}

@@ -1,14 +1,17 @@
 .main-articles-list {
-  grid-column-start: 1;
-  grid-column-end: 4;
+  float:left;
+  width: 100%
 }
 
 ul {
   list-style: none;
 }
 
+/* ul {
+  list-style: none;
+}
+
 li {
-  
   border-color: gray;
   border-style: solid;
   border-width: 2px;
@@ -22,6 +25,7 @@ text-align: left;
 }
 
 .title {
+  margin: 20px;
   float: center;
   font-size: 50%;
  text-align: left;
@@ -39,3 +43,7 @@ text-align: left;
   float: left;
   text-align: left;
 }
+
+.user-info {
+  color: gray;
+} */

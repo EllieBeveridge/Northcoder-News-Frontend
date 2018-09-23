@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types'
 
 const Logout = (props) => {
 
@@ -16,3 +17,9 @@ const Logout = (props) => {
 };
 
 export default Logout;
+
+Logout.propTypes = {
+  logoutCurrentUser: PropTypes.func,
+  setLocalStorage: PropTypes.func,
+  currentUser: PropTypes.object
+}

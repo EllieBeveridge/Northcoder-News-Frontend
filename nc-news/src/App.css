@@ -26,17 +26,3 @@
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
 }
-
-.grid-container {
-  display: grid;
-}
-
-.grid-item1 {
-  grid-column-start: 1;
-  grid-column-end: 3;
-}
-
-.grid-item2 {
-  grid-column-start: 3;
-  grid-column-end: 4;
-}

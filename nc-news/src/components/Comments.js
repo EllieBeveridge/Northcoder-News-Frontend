@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-import Comment from './Comment'
+//import Comment from './Comment'
 import Vote from './Vote'
 import * as api from '../api'
+import PropTypes from 'prop-types';
 
 //This is found in the Article component
 
@@ -32,45 +33,37 @@ class Comments extends Component {
       })
   }
 
-  // handleVote = (id, direction) => {
-  //   api.voteOnComment(id, direction)
-  //     .then(comment => {
-  //       this.setState({
-  //         comment
-  //         // voteChange: direction === 'up' ? 1 : direction === 'down' ? -1 : 0
-  //       })
-  //     })
-  // }
-  // amend this for comment/comments stuff. also maybe change this so can only upvote /downvote once and can undo.
-
   deleteComment = (comment_id) => {
     api.deleteComment(comment_id)
   }
 
+
   render() {
     if (this.state.comments === undefined) { return null }
+    let sortedComments = this.state.comments.sort((a, b) => b.votes - a.votes)
     return (
       <div>
-        <Comment article_id={this.props.article_id} currentUser={this.props.currentUser} />
-        <br></br>
-        {this.state.comments.map((comment, index) => {
-          return <li key={index}>
-
-            <Vote obj={comment} type={"comments"} />
-            {/* <div className="votes">{comment.votes}
+        <ul>
+          {sortedComments.map((comment, index) => {
+            return <li key={index}>
               <br></br>
-              <button name='up' onClick={() => this.handleVote(comment._id, 'up')}>Yay :)</button>
-              <button name="down" onClick={() => this.handleVote(comment._id, 'down')}>Boo :(</button>
-            </div> */}
-            <p className="username">{comment.created_by}</p>
-            <br></br>
-            <p className="body-text">{comment.body}</p>
-            <button name="delete" onClick={() => this.deleteComment(comment._id)}>Delete Comment</button>
-          </li>
-        })}
+              <Vote obj={comment} type={"comments"} />
+              <p className="username">{comment.created_by.username}<img src={comment.created_by.avatar_url} height='15' width='15' alt={index} /></p>
+              <br></br>
+              <p className="body-text">{comment.body}</p>
+              {this.props.currentUser === comment.created_by.username && <button name="delete" onClick={() => this.deleteComment(comment._id)}>Delete Comment</button>}
+            </li>
+          })}
+        </ul>
       </div>
     );
   }
 }
 
 export default Comments;
+
+Comments.propTypes = {
+  match: PropTypes.object,
+  currentUser: PropTypes.object,
+  article_id: PropTypes.string
+}

@@ -4,13 +4,13 @@ import { Link } from 'react-router-dom'
 import './AllArticles.css';
 import Topic from './Topic'
 import Vote from './Vote'
+import PropTypes from 'prop-types'
 
 class AllArticles extends Component {
   state = {
     articles: [],
-    // voteChange: 0
-    // article: {}
-    err: null
+    err: null,
+    newArticle: {}
   }
 
   componentDidMount() {
@@ -68,28 +68,16 @@ class AllArticles extends Component {
       })
   }
 
-  // upvoteArticle = (article_id) => {
-  //   api.upvoteArticle(article_id)
-  //     .then(article => {
-  //       this.setState({ article })
-  //     })
-  // }
-
-  // downvoteArticle = (article_id) => {
-  //   api.downvoteArticle(article_id)
-  //     .then(articles => {
-  //       this.setState({ article })
-  //     })
-  // }
-
-  handleVote = (id, direction) => {
-    api.voteOnArticle(id, direction)
-      .then(article => {
-        this.setState({
-          // voteChange: direction === 'up' ? 1 : direction === 'down' ? -1 : 0,
-          article
-        })
+  postNewArticle = (newArticle) => {
+    const topic = this.props.match.params.topic
+    api.postArticle(topic, newArticle)
+      .then((newArticle) => {
+        this.setState({ newArticle })
       })
+      .catch(err => {
+        console.log(err, 'is it catching here?')
+      })
+
   }
 
   render() {
@@ -106,23 +94,22 @@ class AllArticles extends Component {
     let sortedArticles = articles.sort((a, b) => b.votes - a.votes)
     return (
       <div className="main-articles-list">
-        {this.props.match.params.topic && <Topic topic={this.props.match.params.topic} currentUser={this.props.currentUser} />}
-        <ul>
+        {this.props.match.params.topic && <Topic topic={this.props.match.params.topic} currentUser={this.props.currentUser} postNewArticle={this.postNewArticle} />}
+        <ul className="article-list">
           {sortedArticles.map((article, index) => {
             return (
-              <li key={index}>
-                <Vote obj={article} type={"articles"} />
-                {/* <div className="votes">{article.votes}
-                  <br></br>
-                  <button name='up' onClick={() => this.handleVote(article._id, 'up')}>Yay :)</button>
-                  <button name="down" onClick={() => this.handleVote(article._id, 'down')}>Boo :(</button>
-                </div> */}
+              <li className="article" key={index}>
+                <div className="votes">
+                  <Vote obj={article} type={"articles"} />
+                </div>
                 <div className="title" ><Link to={`/articles/${article._id}`}>{article.title}</Link></div>
                 <div className="topic">{article.belongs_to}</div>
                 <br></br>
-                <p><span>Posted By: <img src={article.created_by.avatar_url} height='15' width='15' alt={article.created_by.name} />
-                  <Link to={`/users/${article.created_by.username}`}>{article.created_by.username}</Link> at {article.created_at}</span>
-                  <span><Link to={`/articles/${article._id}/comments`}>Comments: {article.comment_count}</Link></span></p>
+                <div className="user-info">
+                  <p><span>Posted By: <img src={article.created_by.avatar_url} height='15' width='15' alt={article.created_by.name} />
+                    <Link to={`/users/${article.created_by.username}`}>{article.created_by.username}</Link> at {article.created_at}</span>
+                    <span><Link to={`/articles/${article._id}/comments`}>Comments: {article.comment_count}</Link></span></p>
+                </div>
               </li>)
           })}
         </ul>
@@ -132,3 +119,8 @@ class AllArticles extends Component {
 }
 
 export default AllArticles;
+
+AllArticles.propTypes = {
+  match: PropTypes.object,
+  currentUser: PropTypes.object
+}

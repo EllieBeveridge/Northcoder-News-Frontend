@@ -2,6 +2,9 @@ li {
   float: left;
 }
 
+ul {
+  list-style: none;
+}
 
 .username {
   font-style: bold;

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 //import * as api from '../api'
+import PropTypes from 'prop-types';
 
 class Login extends Component {
 
@@ -18,7 +19,6 @@ class Login extends Component {
     event.preventDefault()
     const username = { ...this.state }
     this.props.setCurrentUser(username)
-    this.props.setLocalStorage(username)
     this.setState({
       username: ''
     })
@@ -39,3 +39,9 @@ class Login extends Component {
 }
 
 export default Login;
+
+Login.propTypes = {
+  setCurrentUser: PropTypes.func,
+  setLocalStorage: PropTypes.func,
+  currentUser: PropTypes.object
+}

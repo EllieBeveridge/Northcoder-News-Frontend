@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import * as api from '../api'
+import PropTypes from 'prop-types'
 
 class User extends Component {
 
@@ -35,3 +36,8 @@ class User extends Component {
 }
 
 export default User;
+
+User.propTypes = {
+    match: PropTypes.object,
+    currentUser: PropTypes.object
+}
