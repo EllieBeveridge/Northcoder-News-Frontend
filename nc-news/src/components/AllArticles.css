@@ -7,16 +7,12 @@ ul {
   list-style: none;
 }
 
- ul {
-  list-style: none;
-}
-
 .article {
   text-align: left;
 }
 
 .title {
-  text-align: center;
+  text-align: left;
   font-size: 1.1rem;
 }
 
@@ -36,45 +32,8 @@ ul {
 
 li {
   float: left;
-  border-color: gray;
-  border-style: solid;
+  /* border-color: gray;
+  border-style: solid; */
   border-width: 2px;
   width: 100%;
 }
-
-/* li {
-  border-color: gray;
-  border-style: solid;
-  border-width: 2px;
-}
-
-p {
-  margin: auto;
-text-align: left;
-  color: gray;
-  font-style: bold;
-}
-
-.title {
-  margin: 20px;
-  float: center;
-  font-size: 50%;
- text-align: left;
- font-size: 100%;
- font-style: bold;
-
-}
-
-.topic {
- float: right;
- color: gray;
-}
-
-votes {
-  float: left;
-  text-align: left;
-}
-
-.user-info {
-  color: gray;
-}  */

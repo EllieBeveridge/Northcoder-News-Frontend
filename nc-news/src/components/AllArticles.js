@@ -93,36 +93,42 @@ class AllArticles extends Component {
     if (!articles) return <p>Loading Articles.....</p>;
     let sortedArticles = articles.sort((a, b) => b.votes - a.votes)
     return (
-      <div className="container">
-        <div className="row">
-          {this.props.match.params.topic && <Topic topic={this.props.match.params.topic} currentUser={this.props.currentUser} postNewArticle={this.postNewArticle} />}
+      <div>
+        <div className="container">
+          <div className="row">
+            {this.props.match.params.topic && <Topic topic={this.props.match.params.topic} currentUser={this.props.currentUser} postNewArticle={this.postNewArticle} />}
+          </div>
         </div>
-        <ul className="article-list">
-          {sortedArticles.map((article, index) => {
-            return (
-              <li key={index}>
+        <br></br>
+        <div className="container">
+          <ul className="article-list">
+            {sortedArticles.map((article, index) => {
+              return (
                 <div className="row">
-                  <div className="col-sm- vote">
-                    <Vote obj={article} type={"articles"} />
-                  </div>
-                  <div className="col-lg- article">
-                    <span className="title"><Link to={`/articles/${article._id}`}>{article.title}</Link></span>
+                  <li key={index}>
+                    <div className="col-sm- vote">
+                      <Vote obj={article} type={"articles"} />
+                    </div>
+                    <div className="col-lg- article">
+                      <span className="title"><Link to={`/articles/${article._id}`}>{article.title}</Link></span>
+                      <br></br>
+                      <p className="user-info">
+                        <span className="topic">{article.belongs_to}</span>
+                        <br></br>
+                        <span><Link to={`/articles/${article._id}/comments`}>Comments: {article.comment_count}</Link></span>
+                        <br></br>
+                        <span>Posted By: <img src={article.created_by.avatar_url} height='15' width='15' alt={article.created_by.name} />
+                          <Link to={`/users/${article.created_by.username}`}>{article.created_by.username}</Link> at {article.created_at}</span>
+                      </p>
+                    </div>
 
-                    <p className="user-info">
-                      <span className="topic">{article.belongs_to}</span>
-                      <br></br>
-                      <span><Link to={`/articles/${article._id}/comments`}>Comments: {article.comment_count}</Link></span>
-                      <br></br>
-                      <span>Posted By: <img src={article.created_by.avatar_url} height='15' width='15' alt={article.created_by.name} />
-                        <Link to={`/users/${article.created_by.username}`}>{article.created_by.username}</Link> at {article.created_at}</span>
-                    </p>
-                  </div>
+                  </li>
                 </div>
-              </li>
-            )
-          })}
-        </ul>
-      </div >
+              )
+            })}
+          </ul>
+        </div >
+      </div>
     );
   }
 }

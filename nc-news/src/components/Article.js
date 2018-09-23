@@ -55,7 +55,7 @@ class Article extends Component {
         </div>
         <h3>Created By: <Link to={`/users/${article.created_by.username}`}>{article.created_by.username}</Link></h3>
         <div className="article-body">
-          <p>{article.body}</p>
+          <span>{article.body}</span>
         </div>
 
         <Comment article_id={article._id} currentUser={this.props.currentUser} postNewComment={this.postNewComment} />
