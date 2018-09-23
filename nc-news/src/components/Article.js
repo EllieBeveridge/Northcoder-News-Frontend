@@ -5,6 +5,7 @@ import Vote from './Vote'
 import { Link } from 'react-router-dom'
 import PropTypes from 'prop-types';
 import Comment from './Comment'
+import './Article.css'
 
 class Article extends Component {
   state = {
@@ -47,17 +48,25 @@ class Article extends Component {
     if (article === undefined) { return null }
     return (
       <div>
-        {article && <h1>{article.title}</h1>}
-        <Vote obj={article} type={"articles"} />
+        <div className="container">
+          <div className="col-sm-"><Vote obj={article} type={"articles"} /> </div>
+          <div className="col-xl- article-title">{article && <h1>{article.title}</h1>}
+          </div>
+        </div>
         <h3>Created By: <Link to={`/users/${article.created_by.username}`}>{article.created_by.username}</Link></h3>
-        <br></br>
-        <p>{article.body}</p>
-        <br></br>
+        <div className="article-body">
+          <p>{article.body}</p>
+        </div>
+
         <Comment article_id={article._id} currentUser={this.props.currentUser} postNewComment={this.postNewComment} />
         <br></br>
-        Comments: {article.comment_count}
+        <span className="comment-count">Comments: {article.comment_count}</span>
+
         <br></br>
+        <br></br>
+
         <Comments article_id={article._id} currentUser={this.props.currentUser} />
+
       </div >
     );
   }

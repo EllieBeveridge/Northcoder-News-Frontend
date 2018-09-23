@@ -7,11 +7,42 @@ ul {
   list-style: none;
 }
 
-/* ul {
+ ul {
   list-style: none;
 }
 
+.article {
+  text-align: left;
+}
+
+.title {
+  text-align: center;
+  font-size: 1.1rem;
+}
+
+.topic {
+  text-align: left;
+  float: left;
+  font-size: 0.8rem;
+}
+
+.vote {
+  margin: 2px;
+}
+
+.user-info {
+  font-size: 0.8rem;
+}
+
 li {
+  float: left;
+  border-color: gray;
+  border-style: solid;
+  border-width: 2px;
+  width: 100%;
+}
+
+/* li {
   border-color: gray;
   border-style: solid;
   border-width: 2px;
@@ -39,11 +70,11 @@ text-align: left;
  color: gray;
 }
 
-.votes {
+votes {
   float: left;
   text-align: left;
 }
 
 .user-info {
   color: gray;
-} */
+}  */

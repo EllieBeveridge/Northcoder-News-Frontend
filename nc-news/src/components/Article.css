@@ -1,0 +1,11 @@
+.article-body {
+  text-align: left;
+  float: left;
+  margin: auto;
+  padding: 10px;
+}
+
+.comment-count {
+  font-size: 1rem;
+ 
+}
