@@ -8,6 +8,7 @@ import Comments from './components/Comments'
 import Login from './components/Login'
 import Logout from './components/Logout'
 import User from './components/User'
+import Error404 from './components/Error404'
 import { Link, Route, BrowserRouter } from 'react-router-dom';
 
 class App extends Component {
@@ -83,13 +84,7 @@ class App extends Component {
       </BrowserRouter >
     );
   }
-}
 
-function Error404() {
-  return <div>
-    <h3>ERROR! 404 NOT FOUND</h3>
-    {/* <Link to={props.locations.state.from}><img height='300' width='500' src='https://www.google.com/url?sa=i&rct=j&q=&esrc=s&source=images&cd=&cad=rja&uact=8&ved=2ahUKEwi_jNve5MvdAhWv4IUKHVqxDCAQjRx6BAgBEAU&url=https%3A%2F%2Fwww.lifewire.com%2F404-not-found-error-explained-2622936&psig=AOvVaw2Zm0LcQf5CBV7NDxdxy9jo&ust=1537608651977662' /></Link> */}
-  </div>
 }
 
 

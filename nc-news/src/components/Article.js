@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import * as api from '../api.js'
 import Comments from './Comments'
 import Vote from './Vote'
-import { Link } from 'react-router-dom'
+import { Link, Redirect } from 'react-router-dom'
 import PropTypes from 'prop-types';
 import Comment from './Comment'
 import './Article.css'
@@ -10,7 +10,8 @@ import './Article.css'
 class Article extends Component {
   state = {
     article: '',
-    voteChange: 0
+    voteChange: 0,
+    err: null
   }
 
   componentDidMount() {
@@ -30,6 +31,9 @@ class Article extends Component {
       .then(article => {
         this.setState({ article })
       })
+      .catch(err => {
+        this.setState({ err })
+      })
   }
 
   postNewComment = (newComment, article_id) => {
@@ -46,6 +50,13 @@ class Article extends Component {
   render() {
     const article = this.state.article[0]
     if (article === undefined) { return null }
+    if (this.state.err) return <Redirect to={{
+      pathname: "/404",
+      state: {
+        sendBackTo: '/'
+      },
+      push: true
+    }} />
     return (
       <div>
         <div className="container">

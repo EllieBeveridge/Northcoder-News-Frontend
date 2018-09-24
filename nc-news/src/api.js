@@ -24,18 +24,12 @@ export const fetchArticlesByTopic = (topic) => {
     .catch(err => { throw err })
 }
 
-// export const fetchAllArticles = () => {
-//   return axios.get(`${DB_URL}/articles`)
-//     .then(({ data: { articles } }) => {
-//       return articles
-//     })
-// }
-
 export const fetchArticleById = (article_id) => {
   return axios.get(`${DB_URL}/articles/${article_id}`)
     .then(({ data: { article } }) => {
       return article;
     })
+    .catch(err => { throw err })
 }
 
 export const fetchAllComments = (article_id) => {
@@ -44,22 +38,6 @@ export const fetchAllComments = (article_id) => {
       return comments
     })
 }
-
-// export const upvoteArticle = (article_id => {
-//   return axios.patch(`${DB_URL}/articles/${article_id}?vote=up`)
-//     .then(({ data: { article } }) => {
-//       return article
-//     })
-
-// })
-
-// export const downvoteArticle = (article_id => {
-//   return axios.patch(`${DB_URL}/articles/${article_id}?vote=down`)
-//     .then(({ data: { article } }) => {
-//       return article
-//     })
-
-// })
 
 export const voteOnComponent = ((id, direction, type) => {
   if (type === 'comments') {
@@ -82,14 +60,6 @@ export const voteOnArticle = ((article_id, direction) => {
     })
 })
 //add direction as a parameter and change to variable
-
-// export const downvoteComment = (comment_id => {
-//   return axios.patch(`${DB_URL}/comments/${comment_id}?vote=down`)
-//     .then(({ data: { comment } }) => {
-//       return comment
-//     })
-
-// })
 
 export const postArticle = (topic, newArticle) => {
   return axios.post(`${DB_URL}/topics/${topic}/articles`, newArticle)

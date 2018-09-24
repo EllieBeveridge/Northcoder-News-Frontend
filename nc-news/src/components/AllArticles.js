@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import * as api from '../api'
-import { Link } from 'react-router-dom'
+import { Link, Redirect } from 'react-router-dom'
 import './AllArticles.css';
 import Topic from './Topic'
 import Vote from './Vote'
@@ -19,6 +19,7 @@ class AllArticles extends Component {
     } else {
       this.fetchAllArticles()
     }
+    console.log(this.props)
   }
 
 
@@ -59,12 +60,22 @@ class AllArticles extends Component {
       .then(articles => {
         this.setState({ articles })
       })
+      .catch(err => {
+        this.setState({
+          err
+        })
+      })
   }
 
   fetchAllArticles = () => {
     api.fetchAllArticles()
       .then(articles => {
         this.setState({ articles })
+      })
+      .catch(err => {
+        this.setState({
+          err
+        })
       })
   }
 
@@ -81,14 +92,13 @@ class AllArticles extends Component {
   }
 
   render() {
-    // if (err) return <Redirect to={{
-    //   pathname: "/404",
-    //   state: {
-    //     sendBackTo: '/'
-    //   }
-    //   //      push: true
-    //   // push goes back 2 url addresses to avoid returning back to invalid url.
-    // }} />
+    if (this.state.err) return <Redirect to={{
+      pathname: "/404",
+      state: {
+        sendBackTo: '/'
+      },
+      push: true
+    }} />
     const { articles } = this.state
     if (!articles) return <p>Loading Articles.....</p>;
     let sortedArticles = articles.sort((a, b) => b.votes - a.votes)
