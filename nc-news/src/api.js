@@ -89,6 +89,15 @@ export const loginUser = (user) => {
     .then(({ data: { user } }) => {
       return user
     })
+    .catch(console.log)
+}
+
+export const retrieveCurrentUser = (username) => {
+  return axios.get(`${DB_URL}/users/${username}`)
+    .then(({ data: { user } }) => {
+      return user
+    })
+    .catch(console.log)
 }
 
 export const deleteComment = (comment_id) => {

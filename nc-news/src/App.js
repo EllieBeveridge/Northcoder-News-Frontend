@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
 import * as api from './api'
-//import Topics from './components/Topics';
 import AllArticles from './components/AllArticles'
 import Article from './components/Article'
 import Comments from './components/Comments'
@@ -16,13 +15,15 @@ class App extends Component {
     currentUser: null
   }
 
-  componentDidMount = async () => {
+  componentDidMount = () => {
     let storage = localStorage.getItem('loggedInUser')
     console.log(storage, 'storage')
-    const currentUser = await api.loginUser(storage)
-    this.setState({
-      currentUser
-    })
+    api.retrieveCurrentUser(storage)
+      .then(user => {
+        this.setState({
+          currentUser: user
+        })
+      })
   }
 
   setCurrentUser = (username) => {
@@ -50,36 +51,40 @@ class App extends Component {
     return (
       <BrowserRouter>
         <div className="App">
-          <div>
-            <div className="container">
-              <div className="row">
-                <div className="col">
-                  <Link to="/">Home</Link>
-                  <br></br>
-                  <div className="login">
-                    {!this.state.currentUser ? <Login setCurrentUser={this.setCurrentUser} setLocalStorage={this.setLocalStorage} currentUser={this.state.currentUser} /> : <Logout currentUser={this.state.currentUser} logoutCurrentUser={this.logoutCurrentUser} setLocalStorage={this.setLocalStorage} />}
-                    {this.state.currentUser && <h3>Logged in as {this.state.currentUser.username}</h3>}
-                  </div>
-                </div>
-                <div className="col">NC NEWS</div>
-                <div className="col">
-                  <ul className="topics-list">
-                    <p>Topics:</p>
-                    <li><Link to="/topics/cooking">Cooking</Link></li>
-                    <li><Link to="/topics/football">Football</Link></li>
-                    <li><Link to="/topics/coding">Coding</Link></li>
-                  </ul>
-                </div>
+          <div className="header-info">
+            <div className="top">
+              <div className="container">
+                <div className="NC-NEWS"><i id="nc-red" className="fas fa-angle-left"></i> NC NEWS <i id="nc-red" className="fas fa-angle-right"></i></div>
+              </div>
+              <div className="container">
+                <div className="col"><Link id="topic-item" to="/">Home</Link></div>
+                <div className="col"><Link id="topic-item" to="/topics/cooking">Cooking</Link></div>
+                <div className="col"><Link id="topic-item" to="/topics/football">Football</Link></div>
+                <div className="col"><Link id="topic-item" to="/topics/coding">Coding</Link></div>
               </div>
             </div>
-
-            <Route path="/users/:user_id" render={({ match }) => <User match={match} currentUser={this.state.currentUser} />} />
-            <Route exact path="/" render={({ match }) => <AllArticles match={match} currentUser={this.state.currentUser} />} />
-            <Route path="/topics/:topic" render={({ match }) => <AllArticles match={match} currentUser={this.state.currentUser} />} />
-            <Route path="/articles/:article_id" render={({ match }) => <Article match={match} currentUser={this.state.currentUser} />} />
-            <Route path="/articles/:article_id/comments" render={({ match }) => <Comments match={match} currentUser={this.state.currentUser} />} />
-            <Route exact path="/404" component={Error404} />
+            <div className="container">
+              <div className="login">
+                {!this.state.currentUser ? <Login id="login" setCurrentUser={this.setCurrentUser} setLocalStorage={this.setLocalStorage} currentUser={this.state.currentUser} /> : <Logout currentUser={this.state.currentUser} logoutCurrentUser={this.logoutCurrentUser} setLocalStorage={this.setLocalStorage} />}
+                {this.state.currentUser && <span id="login">Logged in as {this.state.currentUser.username}</span>}
+              </div>
+              {/* <div className="col">
+                <ul className="topics-list border-0">
+                  <p id="topic-title">Topics:</p>
+                  <li className="border-0"><Link id="topic-item" to="/topics/cooking">Cooking</Link></li>
+                  <li className="border-0"><Link id="topic-item" to="/topics/football">Football</Link></li>
+                  <li className="border-0"><Link id="topic-item" to="/topics/coding">Coding</Link></li>
+                </ul>
+              </div> */}
+            </div>
           </div>
+
+          <Route path="/users/:user_id" render={({ match }) => <User match={match} currentUser={this.state.currentUser} />} />
+          <Route exact path="/" render={({ match }) => <AllArticles match={match} currentUser={this.state.currentUser} />} />
+          <Route path="/topics/:topic" render={({ match }) => <AllArticles match={match} currentUser={this.state.currentUser} />} />
+          <Route path="/articles/:article_id" render={({ match }) => <Article match={match} currentUser={this.state.currentUser} />} />
+          <Route path="/articles/:article_id/comments" render={({ match }) => <Comments match={match} currentUser={this.state.currentUser} />} />
+          <Route exact path="/404" component={Error404} />
         </div>
       </BrowserRouter >
     );

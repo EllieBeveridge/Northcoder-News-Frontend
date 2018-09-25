@@ -5,6 +5,7 @@ import './AllArticles.css';
 import Topic from './Topic'
 import Vote from './Vote'
 import PropTypes from 'prop-types'
+const moment = require('moment');
 
 class AllArticles extends Component {
   state = {
@@ -111,31 +112,33 @@ class AllArticles extends Component {
         </div>
         <br></br>
         <div className="container">
-          <ul className="article-list">
-            {sortedArticles.map((article, index) => {
-              return (
-                <div className="row">
-                  <li key={index}>
+          <ul className="list-group list-group-flush" id="border">
+            <span className="border">
+              {sortedArticles.map((article, index) => {
+                return (
+                  <li className="list-group-item" id="grad" key={index}>
                     <div className="col-sm- vote">
                       <Vote obj={article} type={"articles"} />
                     </div>
                     <div className="col-lg- article">
-                      <span className="title"><Link to={`/articles/${article._id}`}>{article.title}</Link></span>
-                      <br></br>
-                      <p className="user-info">
-                        <span className="topic">{article.belongs_to}</span>
-                        <br></br>
-                        <span><Link to={`/articles/${article._id}/comments`}>Comments: {article.comment_count}</Link></span>
-                        <br></br>
-                        <span>Posted By: <img src={article.created_by.avatar_url} height='15' width='15' alt={article.created_by.name} />
-                          <Link to={`/users/${article.created_by.username}`}>{article.created_by.username}</Link> at {article.created_at}</span>
+                      <div className="title-div">
+                        <span className="title"><Link id="title-link" to={`/articles/${article._id}`}>{article.title}</Link></span>
+                      </div>
+                    </div>
+                    <div className="topic">
+                      <span className="topic-topic">topic:</span><span className="belongs-to">{article.belongs_to}</span>
+                    </div>
+                    <div className="user-info">
+                      <p>
+                        <span className="posted-by">Posted By: <img src={article.created_by.avatar_url} height='15' width='15' alt={article.created_by.name} />
+                          <Link to={`/users/${article.created_by.username}`}>{article.created_by.username} </Link> {moment(article.created_at).fromNow()}</span>
                       </p>
                     </div>
-
+                    <span className="comments"><Link id="comment-count-colour" to={`/articles/${article._id}/comments`}><i id="comment-colour" class="far fa-comments"></i>{article.comment_count}</Link></span>
                   </li>
-                </div>
-              )
-            })}
+                )
+              })}
+            </span>
           </ul>
         </div >
       </div>

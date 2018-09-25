@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 //import * as api from '../api'
 import PropTypes from 'prop-types';
+import './Login.css'
 
 class Login extends Component {
 
@@ -28,10 +29,11 @@ class Login extends Component {
   render() {
     return (
       <div>
+
         <form onSubmit={this.handleSubmit}>
-          Login with Username:
-          <input onChange={this.handleChange} value={this.state.username} name="username" />
-          <button>submit</button>
+          <p id="login">Login with Username<span>  </span>
+            <input onChange={this.handleChange} value={this.state.username} name="username" />
+            <button>submit</button></p>
         </form>
       </div>
     );

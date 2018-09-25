@@ -2,6 +2,11 @@ span {
   text-align: left;
 }
 
+.votes {
+  margin: 20px;
+  padding: 30px;
+  border: 5px;
+}
 
 .fa-angle-up {
   float: center;
@@ -22,3 +27,4 @@ span {
 .fa-angle-down:hover {
   font-size: 2rem;
 }
+

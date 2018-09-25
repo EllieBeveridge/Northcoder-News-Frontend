@@ -1,10 +1,29 @@
-.main-articles-list {
-  float:left;
-  width: 100%
+.list-group-item {
+  width: 99%;
+  /* position: relative;
+  right: 30px; */
+  background-color: whitesmoke;
+  border-style: solid;
+  border-radius: 5px;
+  border-color: rgb(121, 34, 34);
+  border-width: 1px;
 }
+
+#border {
+  border-style: solid;
+  border-radius: 5px;
+  border-color: rgb(121, 34, 34);
+  border-width: 5px;
+}
+
+/* #grad {
+  background-image: linear-gradient(to right, rgba(226, 204, 204, 0.904), white);
+} */
 
 ul {
   list-style: none;
+  margin: none;
+  padding: none;
 }
 
 .article {
@@ -16,19 +35,57 @@ ul {
   font-size: 1.1rem;
 }
 
-.topic {
-  text-align: left;
+#title-link {
+  color:  #20404a ;
+  font-style: bold;
+  font-family: 'Raleway', sans-serif;
+  font-size: 1.6rem;
+}
+
+.title-div {
+  width: 80%;
   float: left;
+  position: relative;
+  left: 20px;
+  bottom: 10px;
+}
+
+.topic {
+ position: absolute;
+ right: 0px;
+ top: 15px;
+}
+
+.topic-topic {
+  text-align: right;
   font-size: 0.8rem;
+  color:  #453b39;
+
+
+}
+
+.belongs-to {
+  color: gray;
+  font-size: 0.8rem;
+  font-weight: bold;
 }
 
 .vote {
   margin: 2px;
 }
 
+.posted-by {
+  text-align: right;
+  float: right;
+}
+
 .user-info {
   font-size: 0.8rem;
+  position: absolute;
+  right: 0px;
+  bottom: 10px;
 }
+
 
 li {
   float: left;
@@ -36,4 +93,23 @@ li {
   border-style: solid; */
   border-width: 2px;
   width: 100%;
+}
+
+.fa-comments {
+  font-size: 1.2rem;
+}
+
+.comments {
+  font-size:1.4rem;
+  position: absolute;
+  bottom: 5px;
+  left: 80px;
+}
+
+#comment-colour {
+  color: rgb(121, 34, 34);
+}
+
+#comment-count-colour {
+  color:  #453b39;
 }

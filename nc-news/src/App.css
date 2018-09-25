@@ -1,5 +1,7 @@
 .App {
   text-align: center;
+  background-color: whitesmoke
+  /* background-color: rgba(182, 179, 179, 0.294); */
 }
 
 .App-logo {
@@ -29,4 +31,56 @@
 
 .container {
   display: flex;
+}
+
+.top {
+  background-color: rgba(226, 204, 204, 0.904)
+}
+
+.NC-NEWS{
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: bold;
+  /* position: relative;
+  left: 30%; */
+  font-size: 3rem;
+  color: rgb(65, 57, 57);
+  width: 200%;
+  background-color: rgba(226, 204, 204, 0.904)
+}
+
+.login {
+  font-size: 1rem;
+}
+
+#login {
+  font-size: 1rem;
+  text-align: left;
+}
+
+#nc-red {
+  color: rgb(121, 34, 34);
+}
+
+
+#topic-title {
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: bold;
+  font-size: 2rem;
+  color: rgb(65, 57, 57);
+  float: right;
+
+}
+
+#topic-item {
+
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: bold;
+  /* position: relative;
+  left: 30%; */
+  font-size: 1rem;
+  color: rgb(65, 57, 57);
+}
+
+#centre {
+  float: center;
 }

@@ -23,7 +23,7 @@ class Vote extends Component {
         <div className="votes">
           <i className="fas fa-angle-up" onClick={() => this.handleVote(this.props.obj._id, 'up', this.props.type)}></i>
           <br></br>
-          <span className="badge badge-primary badge-pill">{this.props.obj.votes + this.state.voteCount}</span>
+          <span className="badge badge-danger badge-pill">{this.props.obj.votes + this.state.voteCount}</span>
           <br></br>
           <i className="fas fa-angle-down" onClick={() => this.handleVote(this.props.obj._id, 'down', this.props.type)}></i>
         </div>
