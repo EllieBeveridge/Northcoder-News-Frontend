@@ -18,7 +18,7 @@ span {
   font-size: 1.8rem;
   transition: 0.2s;
   position: relative;
-  right: 4px;
+  right: 5px;
 }
 
 .fa-angle-up:hover {
@@ -30,7 +30,7 @@ span {
   font-size: 1.8rem;
   transition: 0.2s;
   position: relative;
-  right: 4px;
+  right: 5px;
 } 
 
 .fa-angle-down:hover {

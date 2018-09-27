@@ -1,11 +1,24 @@
+.article-title {
+  font-size: 2rem;
+  text-align: left;
+  padding-left: 10px;
+  color:  #20404a ;
+  font-style: bold;
+  font-family: 'Raleway', sans-serif;
+}
+
 .article-body {
   text-align: left;
-  float: left;
-  margin: auto;
-  padding: 25px;
+  font-size:1rem;
+  padding-top: 10px;
+  padding-bottom: 15px;
 }
 
 .comment-count {
   font-size: 1rem;
- 
+ padding-bottom: 10px;
+}
+
+.created-by {
+  font-size: 1.5rem;
 }

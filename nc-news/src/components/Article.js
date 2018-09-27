@@ -62,20 +62,15 @@ class Article extends Component {
         <div className="container">
           <div className="col-sm-"><Vote obj={article} type={"articles"} /> </div>
           <div className="col-xl- article-title">{article && <h1>{article.title}</h1>}
+            <span className="created-by"> Created By: <Link to={`/users/${article.created_by.username}`}>{article.created_by.username}</Link></span>
+            <div className="article-body">
+              {article.body}
+            </div>
           </div>
         </div>
-        <h3>Created By: <Link to={`/users/${article.created_by.username}`}>{article.created_by.username}</Link></h3>
-        <div className="article-body">
-          <span>{article.body}</span>
-        </div>
-
         <Comment article_id={article._id} currentUser={this.props.currentUser} postNewComment={this.postNewComment} />
         <br></br>
-        <span className="comment-count">Comments: {article.comment_count}</span>
-
-        <br></br>
-        <br></br>
-
+        <div className="comment-count">Comments: {article.comment_count}</div>
         <Comments article_id={article._id} currentUser={this.props.currentUser} />
 
       </div >

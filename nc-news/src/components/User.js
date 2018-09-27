@@ -32,14 +32,17 @@ class User extends Component {
                 <h1>{user.username}</h1>
                 <h3>A.K.A {user.name}</h3>
                 <p>Articles posted by {user.username}:</p>
-                {this.props.allArticles.map((article, index) => {
-                    return (
-                        <li className="article-list" key={index}>
-                            {article.title && console.log(article.title)}
-                            {article.created_by.username === user.username && <span className="title"><Link id="title-link" to={`/articles/${article._id}`}>{article.title}<br></br>{article.belongs_to}</Link></span>}
-                        </li>
-                    )
-                })
+                {this.props.allArticles
+                    .filter(article => article.created_by.username === user.username)
+                    .map((article, index) => {
+                        return (
+                            <li className="article-list" key={index}>
+                                <span className="title"><Link id="title-link" to={`/articles/${article._id}`}>{article.title}<br></br>{article.belongs_to}</Link></span>
+                            </li>
+                        )
+                    })
+
+                    // })
                 }
             </div>
         );

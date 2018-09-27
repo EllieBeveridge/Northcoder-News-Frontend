@@ -5,6 +5,7 @@ import * as api from '../api'
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom'
 import './Comments.css'
+import Media from 'react-media'
 const moment = require('moment');
 
 //This is found in the Article component
@@ -46,28 +47,27 @@ class Comments extends Component {
     let sortedComments = this.state.comments.sort((a, b) => b.votes - a.votes)
     return (
       <div className="container">
-        <div className="row">
-          <ul>
-            {sortedComments.map((comment, index) => {
-              return <li key={index}>
-                <div className="row">
-                  <div className="container">
-                    <div className="col-sm-">
-                      <Vote obj={comment} type={"comments"} />
-                    </div>
-                    <div className="col-xl-">
-                      <span className="body-text">{comment.body}</span>
-                      <br></br>
-                    </div>
-                    <span className="user-deets">Posted By:<img src={comment.created_by.avatar_url} height='15' width='15' alt={comment.created_by.name} />
-                      <Link to={`/users/${comment.created_by.username}`} />{moment(comment.created_at).fromNow()}</span>
-                    {this.props.currentUser === comment.created_by.username && <button name="delete" onClick={() => this.deleteComment(comment._id)}>Delete Comment</button>}
-                  </div>
+        <ul className="list-group list-group-flush" id="border">
+          {sortedComments.map((comment, index) => {
+            return <li className="list-group-item" key={index}>
+              <div className="container">
+                <div className="col-sm-">
+                  <Vote obj={comment} type={"comments"} />
                 </div>
-              </li>
-            })}
-          </ul>
-        </div>
+                <div className="col-xl- body-text">
+                  {comment.body}
+                </div>
+                <div className="user-deets">
+                  Posted By: <img src={comment.created_by.avatar_url} height='15' width='15' alt={comment.created_by.name} />
+                  <Link to={`/users/${comment.created_by.username}`} />{comment.created_by.username}
+                  <Media query="(min-width: 599px)"><span> {moment(comment.created_at).fromNow()}</span></Media>
+                  {this.props.currentUser === comment.created_by.username && <button name="delete" onClick={() => this.deleteComment(comment._id)}>Delete Comment</button>}
+                </div>
+              </div>
+
+            </li>
+          })}
+        </ul>
       </div>
     );
   }

@@ -9,6 +9,7 @@ import PropTypes from 'prop-types'
 import Media from 'react-media'
 const moment = require('moment');
 
+//this is a big file, can we abstract out?
 
 class AllArticles extends Component {
   state = {
@@ -76,7 +77,7 @@ class AllArticles extends Component {
 
   handleDropdown = (event) => {
     this.setState({
-      [event.target.name]: event.target.value
+      dropdown: event.target.value
     })
   }
 
@@ -90,10 +91,10 @@ class AllArticles extends Component {
     }} />
     const { articles } = this.state
     if (!articles) return <p>Loading Articles.....</p>;
-    let sortedArticles = articles
+    let sortedArticles;
     if (this.state.dropdown === 'most-recent') {
-      sortedArticles = articles.sort((a, b) => a.created_at - b.created_at)
-    } else sortedArticles = articles.sort((a, b) => b.votes - a.votes)
+      sortedArticles = [...articles].sort((a, b) => b.created_at - a.created_at)
+    } else sortedArticles = [...articles].sort((a, b) => b.votes - a.votes)
 
     return (
 
@@ -114,7 +115,7 @@ class AllArticles extends Component {
                     {matches =>
                       matches ? (
                         // <div className="col">
-                        <li className="list-group-item" id="grad" key={index}>
+                        <li className="list-group-item" key={index}>
                           <div className="col- vote" id="vote">
                             <Vote obj={article} type={"articles"} />
                           </div>

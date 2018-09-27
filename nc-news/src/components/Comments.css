@@ -1,8 +1,16 @@
-ul {
-  list-style: none;
-  width: 100%
-}
 
+  ul {
+    list-style: none;
+    margin: none;
+    padding: none;
+  }
+
+  #border {
+    border-style: solid;
+    border-radius: 5px;
+    border-color: rgb(121, 34, 34);
+    border-width: 5px;
+  }
 
 li {
   float: left;
@@ -18,13 +26,16 @@ li {
   font-size: 0.8rem;
   position: absolute;
   right: 0px;
+  bottom: 0px;
 }
 
 
 .body-text {
   color: black; 
   text-align: left;
-float: left;
+font-size: 0.8rem;
+margin: 3px;
+padding-bottom: 5px;
 }
 
 .votes {

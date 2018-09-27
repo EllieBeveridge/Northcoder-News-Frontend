@@ -52,7 +52,6 @@ class App extends Component {
   }
 
   setLocalStorage = (user) => {
-    console.log(user, 'local storage')
     localStorage.setItem('loggedInUser', user)
   }
 
@@ -62,10 +61,6 @@ class App extends Component {
     return (
       <BrowserRouter>
         <div className="App">
-          <Media
-            query="(max-width: 599px)"
-            render={() => <p>The document is less than 600px wide.</p>}
-          />
           <div className="header-info">
             <div className="top">
               <div className="container">
