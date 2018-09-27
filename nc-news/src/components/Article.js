@@ -49,7 +49,6 @@ class Article extends Component {
 
   render() {
     const article = this.state.article[0]
-    if (article === undefined) { return null }
     if (this.state.err) return <Redirect to={{
       pathname: "/404",
       state: {
@@ -57,6 +56,7 @@ class Article extends Component {
       },
       push: true
     }} />
+    if (article === undefined) { return null }
     return (
       <div>
         <div className="container">

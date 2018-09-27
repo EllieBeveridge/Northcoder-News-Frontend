@@ -8,11 +8,13 @@ import Login from './components/Login'
 import Logout from './components/Logout'
 import User from './components/User'
 import Error404 from './components/Error404'
+import Media from 'react-media'
 import { Link, Route, BrowserRouter } from 'react-router-dom';
 
 class App extends Component {
   state = {
-    currentUser: null
+    currentUser: null,
+    allArticles: []
   }
 
   componentDidMount = () => {
@@ -24,6 +26,13 @@ class App extends Component {
           currentUser: user
         })
       })
+    api.fetchAllArticles()
+      .then(articles => {
+        this.setState({
+          allArticles: articles
+        })
+      })
+
   }
 
   setCurrentUser = (username) => {
@@ -47,10 +56,16 @@ class App extends Component {
     localStorage.setItem('loggedInUser', user)
   }
 
+
+
   render() {
     return (
       <BrowserRouter>
         <div className="App">
+          <Media
+            query="(max-width: 599px)"
+            render={() => <p>The document is less than 600px wide.</p>}
+          />
           <div className="header-info">
             <div className="top">
               <div className="container">
@@ -64,22 +79,15 @@ class App extends Component {
               </div>
             </div>
             <div className="container">
-              <div className="login">
-                {!this.state.currentUser ? <Login id="login" setCurrentUser={this.setCurrentUser} setLocalStorage={this.setLocalStorage} currentUser={this.state.currentUser} /> : <Logout currentUser={this.state.currentUser} logoutCurrentUser={this.logoutCurrentUser} setLocalStorage={this.setLocalStorage} />}
-                {this.state.currentUser && <span id="login">Logged in as {this.state.currentUser.username}</span>}
+              <div className="col login">
+                {!this.state.currentUser ? <Login id="login" setCurrentUser={this.setCurrentUser} setLocalStorage={this.setLocalStorage} currentUser={this.state.currentUser} /> : null}
+                {this.state.currentUser && <span id="login">Logged in as {this.state.currentUser.username}</span>} <br></br>
+                {this.state.currentUser && <Logout currentUser={this.state.currentUser} logoutCurrentUser={this.logoutCurrentUser} setLocalStorage={this.setLocalStorage} />}
               </div>
-              {/* <div className="col">
-                <ul className="topics-list border-0">
-                  <p id="topic-title">Topics:</p>
-                  <li className="border-0"><Link id="topic-item" to="/topics/cooking">Cooking</Link></li>
-                  <li className="border-0"><Link id="topic-item" to="/topics/football">Football</Link></li>
-                  <li className="border-0"><Link id="topic-item" to="/topics/coding">Coding</Link></li>
-                </ul>
-              </div> */}
             </div>
           </div>
 
-          <Route path="/users/:user_id" render={({ match }) => <User match={match} currentUser={this.state.currentUser} />} />
+          <Route path="/users/:user_id" render={({ match }) => <User match={match} currentUser={this.state.currentUser} allArticles={this.state.allArticles} />} />
           <Route exact path="/" render={({ match }) => <AllArticles match={match} currentUser={this.state.currentUser} />} />
           <Route path="/topics/:topic" render={({ match }) => <AllArticles match={match} currentUser={this.state.currentUser} />} />
           <Route path="/articles/:article_id" render={({ match }) => <Article match={match} currentUser={this.state.currentUser} />} />

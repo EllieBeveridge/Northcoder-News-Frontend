@@ -5,6 +5,7 @@ import * as api from '../api'
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom'
 import './Comments.css'
+const moment = require('moment');
 
 //This is found in the Article component
 
@@ -57,11 +58,10 @@ class Comments extends Component {
                     <div className="col-xl-">
                       <span className="body-text">{comment.body}</span>
                       <br></br>
-                      <span className="user-info">Posted By: <img src={comment.created_by.avatar_url} height='15' width='15' alt={comment.created_by.name} />
-                        <Link to={`/users/${comment.created_by.username}`}>{comment.created_by.username}</Link> at {comment.created_at}</span>
-                      {this.props.currentUser === comment.created_by.username && <button name="delete" onClick={() => this.deleteComment(comment._id)}>Delete Comment</button>}
                     </div>
-
+                    <span className="user-deets">Posted By:<img src={comment.created_by.avatar_url} height='15' width='15' alt={comment.created_by.name} />
+                      <Link to={`/users/${comment.created_by.username}`} />{moment(comment.created_at).fromNow()}</span>
+                    {this.props.currentUser === comment.created_by.username && <button name="delete" onClick={() => this.deleteComment(comment._id)}>Delete Comment</button>}
                   </div>
                 </div>
               </li>

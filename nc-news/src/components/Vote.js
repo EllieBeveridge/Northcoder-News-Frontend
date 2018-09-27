@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import * as api from '../api.js'
 import PropTypes from 'prop-types';
 import './Vote.css'
+import Media from 'react-media'
 
 class Vote extends Component {
 
@@ -23,11 +24,11 @@ class Vote extends Component {
         <div className="votes">
           <i className="fas fa-angle-up" onClick={() => this.handleVote(this.props.obj._id, 'up', this.props.type)}></i>
           <br></br>
-          <span className="badge badge-danger badge-pill">{this.props.obj.votes + this.state.voteCount}</span>
+          <span className="badge badge-danger badge-pill" id="badge-pos">{this.props.obj.votes + this.state.voteCount}</span>
           <br></br>
           <i className="fas fa-angle-down" onClick={() => this.handleVote(this.props.obj._id, 'down', this.props.type)}></i>
-        </div>
-      </div>
+        </div >
+      </div >
     );
   }
 

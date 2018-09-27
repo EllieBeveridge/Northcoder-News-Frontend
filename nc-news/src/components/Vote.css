@@ -8,23 +8,41 @@ span {
   border: 5px;
 }
 
+#arrows {
+  padding: 6px 10px;
+  max-width: 10px;
+}
+
 .fa-angle-up {
   float: center;
   font-size: 1.8rem;
   transition: 0.2s;
+  position: relative;
+  right: 4px;
 }
 
 .fa-angle-up:hover {
-  font-size: 2rem;
+  color: rgb(161, 8, 34)
 }
 
 .fa-angle-down {
   float: center;
   font-size: 1.8rem;
   transition: 0.2s;
+  position: relative;
+  right: 4px;
 } 
 
 .fa-angle-down:hover {
-  font-size: 2rem;
+  color:rgb(161, 8, 34)
+}
+
+#badge-pos {
+  position: relative;
+  right: 6px;
+}
+
+#mobile {
+  font-size: 1rem;
 }
 

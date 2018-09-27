@@ -11,9 +11,6 @@ const Logout = (props) => {
   return (
     <button onClick={() => signOut(props.currentUser)}>Logout</button>
   );
-
-
-
 };
 
 export default Logout;

@@ -1,3 +1,4 @@
+
 .list-group-item {
   width: 99%;
   /* position: relative;
@@ -7,6 +8,8 @@
   border-radius: 5px;
   border-color: rgb(121, 34, 34);
   border-width: 1px;
+  margin: 0;
+  padding: 10px;
 }
 
 #border {
@@ -33,6 +36,15 @@ ul {
 .title {
   text-align: left;
   font-size: 1.1rem;
+}
+
+#title-link-mobile {
+  color:  #20404a ;
+  font-style: bold;
+  font-family: 'Raleway', sans-serif;
+  font-size: 1.1rem;
+  position: relative;
+  bottom: 0px;
 }
 
 #title-link {
@@ -72,6 +84,11 @@ ul {
 
 .vote {
   margin: 2px;
+  width: 40%;
+}
+
+#vote {
+  width: 50%;
 }
 
 .posted-by {
@@ -79,11 +96,23 @@ ul {
   float: right;
 }
 
+.posted-by-mobile {
+  position: relative;
+  bottom: 0px;
+}
+
 .user-info {
   font-size: 0.8rem;
   position: absolute;
   right: 0px;
   bottom: 10px;
+}
+
+.user-info-mobile {
+  font-size: 0.8rem;
+  position: absolute;
+  right: 0px;
+  bottom: 0px;
 }
 
 

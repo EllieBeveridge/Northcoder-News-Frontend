@@ -1,3 +1,9 @@
+ul {
+  list-style: none;
+  width: 100%
+}
+
+
 li {
   float: left;
   border-color: gray;
@@ -6,17 +12,14 @@ li {
   width: 100%;
 }
 
-ul {
-  list-style: none;
-}
-
-.user-info {
+.user-deets {
   font-style: bold;
   color: gray;
   font-size: 0.8rem;
-  text-align: left;
-  float: left;
+  position: absolute;
+  right: 0px;
 }
+
 
 .body-text {
   color: black; 
