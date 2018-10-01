@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import * as api from '../api.js'
 import PropTypes from 'prop-types';
 import './Vote.css'
-import Media from 'react-media'
 
 class Vote extends Component {
 

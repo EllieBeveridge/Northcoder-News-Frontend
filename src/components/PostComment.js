@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
-//import * as api from '../api'
 import PropTypes from 'prop-types';
+import Media from 'react-media'
+
 
 //This is found in render on the Comments component
 
-class Comment extends Component {
+class PostComment extends Component {
   state = {
     body: '',
     created_by: ''
@@ -41,8 +42,11 @@ class Comment extends Component {
       return (
         <div>
           <form onSubmit={this.handleSubmit}>
-            Body:
-         <input type="text" onChange={this.handleChange} value={this.state.body} name="body" />
+            <div className="float-left">Body:</div>
+            <div className="float-center">
+              <Media query={{ maxWidth: 599 }} ><textarea rows="4" cols="25" onChange={this.handleChange} value={this.state.body} name="body" /></Media>
+              <Media query={{ minWidth: 600 }} ><textarea rows="4" cols="65" onChange={this.handleChange} value={this.state.body} name="body" /></Media>
+            </div>
             <input type="submit" value="Submit" />
           </form>
         </div>
@@ -51,9 +55,9 @@ class Comment extends Component {
   }
 }
 
-export default Comment;
+export default PostComment;
 
-Comment.propTypes = {
+PostComment.propTypes = {
   article_id: PropTypes.string,
   currentUser: PropTypes.object
 }

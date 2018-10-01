@@ -30,12 +30,6 @@ float: center;
   float: center;
 }
 
-#sorting {
-position: absolute;
-right: 110px;
-bottom: 205px;
-}
-
 ul {
   list-style: none;
   margin: none;
@@ -146,6 +140,13 @@ li {
   position: absolute;
   bottom: 5px;
   left: 65px;
+}
+
+.comments-mobile {
+  position: absolute;
+  bottom: 25px;
+  left: 60px;
+  font-size: 1rem;
 }
 
 #comment-colour {

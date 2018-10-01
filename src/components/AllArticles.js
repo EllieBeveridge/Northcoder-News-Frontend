@@ -97,9 +97,7 @@ class AllArticles extends Component {
     } else sortedArticles = [...articles].sort((a, b) => b.votes - a.votes)
 
     return (
-
       <div>
-        {/* <Dropdown handleDropdown={this.handleDropdown} /> */}
         <div className="container">
           <div className="row">
             {this.props.match.params.topic && <PostArticle topic={this.props.match.params.topic} currentUser={this.props.currentUser} postNewArticle={this.postNewArticle} />}
@@ -107,9 +105,7 @@ class AllArticles extends Component {
         </div>
         <div className="container dropdown-container">
           <div className="row">
-            {/* <div className="dropdown"> */}
             <Dropdown className="dropdown" handleDropdown={this.handleDropdown} />
-            {/* </div> */}
           </div>
         </div>
         <div className="container">
@@ -133,6 +129,7 @@ class AllArticles extends Component {
                             Posted By: <img src={article.created_by.avatar_url} height='15' width='15' alt={article.created_by.name} />
                             <Link to={`/users/${article.created_by.username}`}>{article.created_by.username} </Link>
                           </div>
+                          <span className="comments-mobile"><Link id="comment-count-colour" to={`/articles/${article._id}/comments`}><i id="comment-colour" class="far fa-comments"></i>{article.comment_count}</Link></span>
                         </li>
                       ) : (
                           <li className="list-group-item" id="grad" key={index}>

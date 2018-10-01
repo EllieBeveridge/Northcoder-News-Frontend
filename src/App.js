@@ -9,6 +9,7 @@ import Logout from './components/Logout'
 import User from './components/User'
 import Error404 from './components/Error404'
 import { Link, Route, BrowserRouter } from 'react-router-dom';
+import Media from 'react-media'
 
 class App extends Component {
   state = {
@@ -63,7 +64,8 @@ class App extends Component {
           <div className="header-info">
             <div className="top">
               <div className="container">
-                <div className="NC-NEWS"><i id="nc-red" className="fas fa-angle-left"></i> NC NEWS <i id="nc-red" className="fas fa-angle-right"></i></div>
+                <Media query={{ maxWidth: 599 }}><div className="NC-NEWS-mobile"><i id="nc-red" className="fas fa-angle-left"></i> NC NEWS <i id="nc-red" className="fas fa-angle-right"></i></div></Media>
+                <Media query={{ minWidth: 600 }}><div className="NC-NEWS"><i id="nc-red" className="fas fa-angle-left"></i> NC NEWS <i id="nc-red" className="fas fa-angle-right"></i></div></Media>
               </div>
               <div className="container">
                 <div className="col"><Link id="topic-item" to="/">Home</Link></div>
@@ -79,8 +81,9 @@ class App extends Component {
               <div className="logged-in">
                 {this.state.currentUser && <span id="login">Logged in as {this.state.currentUser.username}</span>} <br></br>
               </div>
-              {this.state.currentUser && <Logout currentUser={this.state.currentUser} logoutCurrentUser={this.logoutCurrentUser} setLocalStorage={this.setLocalStorage} />}
-
+              <div>
+                {this.state.currentUser && <Logout currentUser={this.state.currentUser} logoutCurrentUser={this.logoutCurrentUser} setLocalStorage={this.setLocalStorage} />}
+              </div>
             </div>
           </div>
 

@@ -48,6 +48,17 @@
   background-color: rgba(226, 204, 204, 0.904)
 }
 
+.NC-NEWS-mobile {
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: bold;
+  /* position: relative;
+  left: 30%; */
+  font-size: 2rem;
+  color: rgb(65, 57, 57);
+  width: 200%;
+  background-color: rgba(226, 204, 204, 0.904)
+}
+
 .login {
   padding-top: 10px;
   font-size: 1rem;
@@ -64,11 +75,6 @@ left: 15%;
   text-align: left;
   height: 50px;
 }
-/* 
-#login {
-  font-size: 1.2rem;
-  text-align: left;
-} */
 
 #nc-red {
   color: rgb(121, 34, 34);

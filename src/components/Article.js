@@ -3,8 +3,9 @@ import * as api from '../api.js'
 import Comments from './Comments'
 import Vote from './Vote'
 import { Link, Redirect } from 'react-router-dom'
+import Media from 'react-media'
 import PropTypes from 'prop-types';
-import Comment from './Comment'
+import PostComment from './PostComment.js'
 import './Article.css'
 
 class Article extends Component {
@@ -61,14 +62,19 @@ class Article extends Component {
       <div>
         <div className="container">
           <div className="col-sm-"><Vote obj={article} type={"articles"} /> </div>
-          <div className="col-xl- article-title">{article && <h1>{article.title}</h1>}
-            <span className="created-by"> Created By: <Link to={`/users/${article.created_by.username}`}>{article.created_by.username}</Link></span>
+          <div className="col-xl- article-title">
+            <Media query={{ maxWidth: 599 }} >{article && <h1 id="article-title-mobile">{article.title}</h1>}</Media>
+            <Media query={{ maxWidth: 599 }} ><span className="created-by-mobile"> Created By: <Link to={`/users/${article.created_by.username}`}>{article.created_by.username}</Link></span></Media>
+            <Media query={{ minWidth: 600 }} >{article && <h1>{article.title}</h1>}</Media>
+            <Media query={{ minWidth: 600 }} ><span className="created-by"> Created By: <Link to={`/users/${article.created_by.username}`}>{article.created_by.username}</Link></span></Media>
             <div className="article-body">
               {article.body}
             </div>
           </div>
         </div>
-        <Comment article_id={article._id} currentUser={this.props.currentUser} postNewComment={this.postNewComment} />
+        <div className="container">
+          <PostComment article_id={article._id} currentUser={this.props.currentUser} postNewComment={this.postNewComment} />
+        </div>
         <br></br>
         <div className="comment-count">Comments: {article.comment_count}</div>
         <Comments article_id={article._id} currentUser={this.props.currentUser} />

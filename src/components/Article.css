@@ -7,6 +7,10 @@
   font-family: 'Raleway', sans-serif;
 }
 
+#article-title-mobile {
+  font-size: 2rem;
+}
+
 .article-body {
   text-align: left;
   font-size:1rem;
@@ -21,4 +25,8 @@
 
 .created-by {
   font-size: 1.5rem;
+}
+
+.created-by-mobile {
+  font-size: 1.2rem;
 }

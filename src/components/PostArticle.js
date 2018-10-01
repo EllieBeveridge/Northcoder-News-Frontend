@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import Media from 'react-media'
 import './PostArticle.css'
 
 //This is linked from AllArticles
@@ -52,7 +53,8 @@ class PostArticle extends Component {
               <div>
                 <div className="post-article-body">Body:</div>
                 <div>
-                  <textarea rows="4" cols="50" onChange={this.handleChange} value={this.state.body} name="body" />
+                  <Media query={{ maxWidth: 599 }} ><textarea rows="4" cols="25" onChange={this.handleChange} value={this.state.body} name="body" /></Media>
+                  <Media query={{ minWidth: 600 }} ><textarea rows="4" cols="65" onChange={this.handleChange} value={this.state.body} name="body" /></Media>
                 </div>
               </div>
               <input type="submit" value="Submit" />
