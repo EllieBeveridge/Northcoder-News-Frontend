@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import './PostArticle.css'
 
 //This is linked from AllArticles
 
-class Topic extends Component {
+class PostArticle extends Component {
 
   state = {
     title: '',
@@ -37,19 +38,23 @@ class Topic extends Component {
   render() {
     if (!this.props.currentUser) {
       return (
-        <div>
-          <h3>You must be logged in to post an article.</h3>
-        </div>
+        <p className="login-msg">You must be logged in to post an article.</p>
       )
     } else {
       return (
         <div>
           <form onSubmit={this.handleSubmit}>
-            <div>
-              <h3>Post New Article as {this.props.currentUser.username}</h3>
-              Title: <input onChange={this.handleChange} value={this.state.title} name="title" />
-              Body:
-            <input type="text" onChange={this.handleChange} value={this.state.body} name="body" />
+            <div className="post-article">
+              <span id="post-as">Post New Article as {this.props.currentUser.username}</span>
+              <div className="post-article-title">
+                Title: <br></br><input onChange={this.handleChange} value={this.state.title} name="title" />
+              </div>
+              <div>
+                <div className="post-article-body">Body:</div>
+                <div>
+                  <textarea rows="4" cols="50" onChange={this.handleChange} value={this.state.body} name="body" />
+                </div>
+              </div>
               <input type="submit" value="Submit" />
             </div>
           </form>
@@ -60,9 +65,9 @@ class Topic extends Component {
   }
 }
 
-export default Topic;
+export default PostArticle;
 
-Topic.propTypes = {
+PostArticle.propTypes = {
   topic: PropTypes.string,
   currentUser: PropTypes.object
 }

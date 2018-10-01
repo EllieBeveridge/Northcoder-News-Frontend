@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import * as api from '../api'
 import { Link, Redirect } from 'react-router-dom'
 import './AllArticles.css';
-import Topic from './Topic'
+import PostArticle from './PostArticle'
 import Vote from './Vote'
 import Dropdown from './Dropdown'
 import PropTypes from 'prop-types'
@@ -99,13 +99,19 @@ class AllArticles extends Component {
     return (
 
       <div>
-        <Dropdown handleDropdown={this.handleDropdown} />
+        {/* <Dropdown handleDropdown={this.handleDropdown} /> */}
         <div className="container">
           <div className="row">
-            {this.props.match.params.topic && <Topic topic={this.props.match.params.topic} currentUser={this.props.currentUser} postNewArticle={this.postNewArticle} />}
+            {this.props.match.params.topic && <PostArticle topic={this.props.match.params.topic} currentUser={this.props.currentUser} postNewArticle={this.postNewArticle} />}
           </div>
         </div>
-        <br></br>
+        <div className="container dropdown-container">
+          <div className="row">
+            {/* <div className="dropdown"> */}
+            <Dropdown className="dropdown" handleDropdown={this.handleDropdown} />
+            {/* </div> */}
+          </div>
+        </div>
         <div className="container">
           <ul className="list-group list-group-flush" id="border">
             <span className="border">
@@ -114,7 +120,6 @@ class AllArticles extends Component {
                   <Media query={{ maxWidth: 599 }}>
                     {matches =>
                       matches ? (
-                        // <div className="col">
                         <li className="list-group-item" key={index}>
                           <div className="col- vote" id="vote">
                             <Vote obj={article} type={"articles"} />
@@ -129,7 +134,6 @@ class AllArticles extends Component {
                             <Link to={`/users/${article.created_by.username}`}>{article.created_by.username} </Link>
                           </div>
                         </li>
-                        // </div>
                       ) : (
                           <li className="list-group-item" id="grad" key={index}>
                             <div className="col-sm- vote">

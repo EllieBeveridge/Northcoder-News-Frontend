@@ -19,6 +19,23 @@
   border-width: 5px;
 }
 
+.dropdown {
+float: center;
+}
+
+.dropdown-container{
+  padding-bottom: 10px;
+  /* position: relative;
+  left: 20px; */
+  float: center;
+}
+
+#sorting {
+position: absolute;
+right: 110px;
+bottom: 205px;
+}
+
 ul {
   list-style: none;
   margin: none;
@@ -128,7 +145,7 @@ li {
   font-size:1.4rem;
   position: absolute;
   bottom: 5px;
-  left: 80px;
+  left: 65px;
 }
 
 #comment-colour {

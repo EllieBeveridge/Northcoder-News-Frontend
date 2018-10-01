@@ -8,7 +8,6 @@ import Login from './components/Login'
 import Logout from './components/Logout'
 import User from './components/User'
 import Error404 from './components/Error404'
-import Media from 'react-media'
 import { Link, Route, BrowserRouter } from 'react-router-dom';
 
 class App extends Component {
@@ -76,9 +75,12 @@ class App extends Component {
             <div className="container">
               <div className="col login">
                 {!this.state.currentUser ? <Login id="login" setCurrentUser={this.setCurrentUser} setLocalStorage={this.setLocalStorage} currentUser={this.state.currentUser} /> : null}
-                {this.state.currentUser && <span id="login">Logged in as {this.state.currentUser.username}</span>} <br></br>
-                {this.state.currentUser && <Logout currentUser={this.state.currentUser} logoutCurrentUser={this.logoutCurrentUser} setLocalStorage={this.setLocalStorage} />}
               </div>
+              <div className="logged-in">
+                {this.state.currentUser && <span id="login">Logged in as {this.state.currentUser.username}</span>} <br></br>
+              </div>
+              {this.state.currentUser && <Logout currentUser={this.state.currentUser} logoutCurrentUser={this.logoutCurrentUser} setLocalStorage={this.setLocalStorage} />}
+
             </div>
           </div>
 

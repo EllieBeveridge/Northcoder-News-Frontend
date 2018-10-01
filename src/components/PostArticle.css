@@ -1,0 +1,31 @@
+.login-msg {
+  font-size: 1rem;
+  position: relative;
+  left: 60%;
+  font-family: 'Raleway', sans-serif;
+}
+
+.post-article {
+  margin-left: 15px;
+  text-align: left;
+  margin-bottom: 10px;
+  color:  #20404a ;
+  font-weight: bold;
+  font-family: 'Raleway', sans-serif;
+}
+
+.post-article-title {
+text-align: left;
+margin-bottom: 10px;
+margin-top: 5px;
+font-weight: normal;
+}
+
+.post-article-body {
+  text-align: left;
+  font-weight: normal;
+}
+
+.submit-button {
+  text-align: right;
+}
