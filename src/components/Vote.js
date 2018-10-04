@@ -36,6 +36,6 @@ class Vote extends Component {
 export default Vote;
 
 Vote.propTypes = {
-  obj: PropTypes.object,
-  type: PropTypes.string
+  obj: PropTypes.object.isRequired,
+  type: PropTypes.string.isRequired
 }

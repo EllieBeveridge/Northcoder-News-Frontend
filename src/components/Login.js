@@ -43,7 +43,7 @@ class Login extends Component {
 export default Login;
 
 Login.propTypes = {
-  setCurrentUser: PropTypes.func,
-  setLocalStorage: PropTypes.func,
-  currentUser: PropTypes.object
+  setCurrentUser: PropTypes.func.isRequired,
+  setLocalStorage: PropTypes.func.isRequired,
+  currentUser: PropTypes.object.isRequired
 }

@@ -16,7 +16,7 @@ const Logout = (props) => {
 export default Logout;
 
 Logout.propTypes = {
-  logoutCurrentUser: PropTypes.func,
-  setLocalStorage: PropTypes.func,
-  currentUser: PropTypes.object
+  logoutCurrentUser: PropTypes.func.isRequired,
+  setLocalStorage: PropTypes.func.isRequired,
+  currentUser: PropTypes.object.isRequired
 }

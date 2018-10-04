@@ -61,6 +61,6 @@ class User extends Component {
 export default User;
 
 User.propTypes = {
-    match: PropTypes.object,
-    currentUser: PropTypes.object
+    match: PropTypes.object.isRequired,
+    currentUser: PropTypes.object.isRequired
 }

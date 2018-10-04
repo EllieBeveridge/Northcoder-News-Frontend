@@ -166,6 +166,6 @@ class AllArticles extends Component {
 export default AllArticles;
 
 AllArticles.propTypes = {
-  match: PropTypes.object,
-  currentUser: PropTypes.object
+  match: PropTypes.object.isRequired,
+  currentUser: PropTypes.object.isRequired
 }

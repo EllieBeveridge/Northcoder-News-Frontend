@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 const Dropdown = (props) => {
 
@@ -14,3 +15,7 @@ const Dropdown = (props) => {
 
 
 export default Dropdown;
+
+Dropdown.propTypes = {
+  handleDropdown: PropTypes.func.isRequired
+}

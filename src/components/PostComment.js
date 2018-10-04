@@ -58,6 +58,6 @@ class PostComment extends Component {
 export default PostComment;
 
 PostComment.propTypes = {
-  article_id: PropTypes.string,
-  currentUser: PropTypes.object
+  article_id: PropTypes.string.isRequired,
+  currentUser: PropTypes.object.isRequired
 }

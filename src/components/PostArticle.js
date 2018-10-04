@@ -70,6 +70,6 @@ class PostArticle extends Component {
 export default PostArticle;
 
 PostArticle.propTypes = {
-  topic: PropTypes.string,
-  currentUser: PropTypes.object
+  topic: PropTypes.string.isRequired,
+  currentUser: PropTypes.object.isRequired
 }

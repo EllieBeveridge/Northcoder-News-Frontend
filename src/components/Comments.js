@@ -77,7 +77,7 @@ class Comments extends Component {
 export default Comments;
 
 Comments.propTypes = {
-  match: PropTypes.object,
-  currentUser: PropTypes.object,
-  article_id: PropTypes.string
+  match: PropTypes.object.isRequired,
+  currentUser: PropTypes.object.isRequired,
+  article_id: PropTypes.string.isRequired
 }

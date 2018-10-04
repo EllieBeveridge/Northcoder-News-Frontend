@@ -87,6 +87,6 @@ class Article extends Component {
 export default Article;
 
 Article.propTypes = {
-  match: PropTypes.object,
-  currentUser: PropTypes.object
+  match: PropTypes.object.isRequired,
+  currentUser: PropTypes.object.isRequired
 }
