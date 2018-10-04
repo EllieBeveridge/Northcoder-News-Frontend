@@ -33,6 +33,11 @@
   display: flex;
 }
 
+.topic-width {
+  width: 100%;
+  float: center;
+}
+
 .top {
   background-color: rgba(226, 204, 204, 0.904)
 }

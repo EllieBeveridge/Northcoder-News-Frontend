@@ -57,7 +57,7 @@ class Article extends Component {
       },
       push: true
     }} />
-    if (article === undefined) { return null }
+    if (!article) return <p>Loading Article.....</p>;
     return (
       <div>
         <div className="container">

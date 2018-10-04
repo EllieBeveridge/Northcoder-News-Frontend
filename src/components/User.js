@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import * as api from '../api'
 import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
+import './User.css'
 
 class User extends Component {
 
@@ -28,22 +29,30 @@ class User extends Component {
         const { user } = this.state
         return (
             <div>
-                <img src={`${user.avatar_url}`} alt={`${user._id}`} />
-                <h1>{user.username}</h1>
-                <h3>A.K.A {user.name}</h3>
+                <div className="container">
+                    <div className="row user-pos">
+                        <img src={`${user.avatar_url}`} height='85' width='85' alt={`${user._id}`} />
+                        <h1>{user.username}</h1>
+                    </div>
+                </div>
+                <div className="container">
+                    <h3>A.K.A {user.name}</h3>
+                </div>
                 <p>Articles posted by {user.username}:</p>
-                {this.props.allArticles
-                    .filter(article => article.created_by.username === user.username)
-                    .map((article, index) => {
-                        return (
-                            <li className="article-list" key={index}>
-                                <span className="title"><Link id="title-link" to={`/articles/${article._id}`}>{article.title}<br></br>{article.belongs_to}</Link></span>
-                            </li>
-                        )
-                    })
-
-                    // })
-                }
+                <div className="container">
+                    <ul className="list-group list-group-flush w-100" id="border">
+                        {this.props.allArticles
+                            .filter(article => article.created_by.username === user.username)
+                            .map((article, index) => {
+                                return (
+                                    <li className="list-group-item w-100 article-list" key={index}>
+                                        <span className="user-title w-100"><Link id="user-title-link" to={`/articles/${article._id}`}>{article.title}<br></br>{article.belongs_to}</Link></span>
+                                    </li>
+                                )
+                            })
+                        }
+                    </ul>
+                </div>
             </div>
         );
     }

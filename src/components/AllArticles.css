@@ -145,7 +145,7 @@ li {
 .comments-mobile {
   position: absolute;
   bottom: 25px;
-  left: 60px;
+  right: 0px;
   font-size: 1rem;
 }
 

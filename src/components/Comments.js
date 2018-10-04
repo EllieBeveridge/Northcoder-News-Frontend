@@ -43,7 +43,8 @@ class Comments extends Component {
 
 
   render() {
-    if (this.state.comments === undefined) { return null }
+    const { comments } = this.state
+    if (!comments) return <p>Loading Comments.....</p>;
     let sortedComments = this.state.comments.sort((a, b) => b.votes - a.votes)
     return (
       <div className="container">

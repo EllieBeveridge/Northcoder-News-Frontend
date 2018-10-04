@@ -1,0 +1,24 @@
+#user-title-link {
+  color:  #20404a ;
+  font-style: bold;
+  font-family: 'Raleway', sans-serif;
+  font-size: 1rem;
+  width: 100%;
+}
+
+#border {
+  border-style: solid;
+  border-radius: 5px;
+  border-color: rgb(121, 34, 34);
+  border-width: 5px;
+}
+
+.user-pos {
+  float: center;
+}
+
+li {
+  float: left;
+  border-width: 2px;
+  width: 100%;
+}

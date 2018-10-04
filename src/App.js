@@ -19,7 +19,6 @@ class App extends Component {
 
   componentDidMount = () => {
     let storage = localStorage.getItem('loggedInUser')
-    console.log(storage, 'storage')
     api.retrieveCurrentUser(storage)
       .then(user => {
         this.setState({
@@ -58,6 +57,7 @@ class App extends Component {
 
 
   render() {
+
     return (
       <BrowserRouter>
         <div className="App">
@@ -68,10 +68,12 @@ class App extends Component {
                 <Media query={{ minWidth: 600 }}><div className="NC-NEWS"><i id="nc-red" className="fas fa-angle-left"></i> NC NEWS <i id="nc-red" className="fas fa-angle-right"></i></div></Media>
               </div>
               <div className="container">
-                <div className="col"><Link id="topic-item" to="/">Home</Link></div>
-                <div className="col"><Link id="topic-item" to="/topics/cooking">Cooking</Link></div>
-                <div className="col"><Link id="topic-item" to="/topics/football">Football</Link></div>
-                <div className="col"><Link id="topic-item" to="/topics/coding">Coding</Link></div>
+                <div className="row topic-width">
+                  <div className="col"><Link id="topic-item" to="/">Home</Link></div>
+                  <div className="col"><Link id="topic-item" to="/topics/cooking">Cooking</Link></div>
+                  <div className="col"><Link id="topic-item" to="/topics/football">Football</Link></div>
+                  <div className="col"><Link id="topic-item" to="/topics/coding">Coding</Link></div>
+                </div>
               </div>
             </div>
             <div className="container">
