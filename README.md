@@ -1,6 +1,6 @@
 ## Northcoders News
 
-Link to [live app](http://.priceless-williams-655f96.netlify.com)
+Link to [live app](http://priceless-williams-655f96.netlify.com)
 
 Northcoders News
 
@@ -12,7 +12,12 @@ A full list of the endpoints can be found in the [backend repo](https://github.c
 
 ## Prerequisities
 
-   ****************************************
+All required packages can be added by running the following command:
+
+````
+npm install
+
+````
 
 ## Installation
 
