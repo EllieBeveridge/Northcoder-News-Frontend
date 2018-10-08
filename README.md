@@ -1,6 +1,6 @@
 ## Northcoders News
 
-Link to [live app](https://clever-shirley-7d9b91.netlify.com)
+Link to [live app](https://trusting-hermann-ab9359.netlify.com)
 
 Northcoders News
 
