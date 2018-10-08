@@ -42,12 +42,12 @@ class PostComment extends Component {
       return (
         <div>
           <form onSubmit={this.handleSubmit}>
-            <div className="float-left">Body:</div>
+            <h5 className="float-left">Body:</h5><br></br>
             <div className="float-center">
-              <Media query={{ maxWidth: 599 }} ><textarea rows="4" cols="25" onChange={this.handleChange} value={this.state.body} name="body" /></Media>
-              <Media query={{ minWidth: 600 }} ><textarea rows="4" cols="65" onChange={this.handleChange} value={this.state.body} name="body" /></Media>
+              <Media query={{ maxWidth: 599 }} ><textarea rows="3" cols="9" onChange={this.handleChange} value={this.state.body} name="body" /></Media>
+              <Media query={{ minWidth: 600 }} ><textarea rows="3" cols="25" onChange={this.handleChange} value={this.state.body} name="body" /></Media>
             </div>
-            <input type="submit" value="Submit" />
+            <h5><input className="comment-submit" type="submit" value="Submit" /></h5>
           </form>
         </div>
       );
@@ -59,5 +59,5 @@ export default PostComment;
 
 PostComment.propTypes = {
   article_id: PropTypes.string.isRequired,
-  currentUser: PropTypes.object.isRequired
+  currentUser: PropTypes.object
 }

@@ -62,5 +62,5 @@ export default User;
 
 User.propTypes = {
     match: PropTypes.object.isRequired,
-    currentUser: PropTypes.object.isRequired
+    currentUser: PropTypes.object
 }

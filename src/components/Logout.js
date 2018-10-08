@@ -18,5 +18,5 @@ export default Logout;
 Logout.propTypes = {
   logoutCurrentUser: PropTypes.func.isRequired,
   setLocalStorage: PropTypes.func.isRequired,
-  currentUser: PropTypes.object.isRequired
+  currentUser: PropTypes.object
 }

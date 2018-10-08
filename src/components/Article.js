@@ -10,7 +10,7 @@ import './Article.css'
 
 class Article extends Component {
   state = {
-    article: '',
+    article: null,
     voteChange: 0,
     err: null
   }
@@ -49,7 +49,7 @@ class Article extends Component {
   }
 
   render() {
-    const article = this.state.article[0]
+
     if (this.state.err) return <Redirect to={{
       pathname: "/404",
       state: {
@@ -57,7 +57,8 @@ class Article extends Component {
       },
       push: true
     }} />
-    if (article === '') return <p>Loading Article.....</p>;
+    if (!this.state.article) return <p>Loading Article.....</p>;
+    const article = this.state.article[0]
     return (
       <div>
         <div className="container">
@@ -70,10 +71,8 @@ class Article extends Component {
             <div className="article-body">
               {article.body}
             </div>
+            <PostComment article_id={article._id} currentUser={this.props.currentUser} postNewComment={this.postNewComment} />
           </div>
-        </div>
-        <div className="container">
-          <PostComment article_id={article._id} currentUser={this.props.currentUser} postNewComment={this.postNewComment} />
         </div>
         <br></br>
         <div className="comment-count">Comments: {article.comment_count}</div>
@@ -88,5 +87,5 @@ export default Article;
 
 Article.propTypes = {
   match: PropTypes.object.isRequired,
-  currentUser: PropTypes.object.isRequired
+  currentUser: PropTypes.object
 }

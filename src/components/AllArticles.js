@@ -167,5 +167,5 @@ export default AllArticles;
 
 AllArticles.propTypes = {
   match: PropTypes.object.isRequired,
-  currentUser: PropTypes.object.isRequired
+  currentUser: PropTypes.object
 }

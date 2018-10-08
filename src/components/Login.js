@@ -45,5 +45,5 @@ export default Login;
 Login.propTypes = {
   setCurrentUser: PropTypes.func.isRequired,
   setLocalStorage: PropTypes.func.isRequired,
-  currentUser: PropTypes.object.isRequired
+  currentUser: PropTypes.object
 }

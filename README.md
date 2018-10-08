@@ -8,8 +8,6 @@ Northcoders News is a Reddit-style news application. It sorts a list of articles
 
 A full list of the endpoints can be found in the [backend repo](https://github.com/EllieBeveridge/Northcoder-News-EB).
 
-A full list of the endpoints can be found in the [backend repo](https://github.com/EllieBeveridge/Northcoder-News-EB).
-
 ## Prerequisities
 
 Fork and clone the Northcoder-News-Frontend repository.

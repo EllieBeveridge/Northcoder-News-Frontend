@@ -71,5 +71,5 @@ export default PostArticle;
 
 PostArticle.propTypes = {
   topic: PropTypes.string.isRequired,
-  currentUser: PropTypes.object.isRequired
+  currentUser: PropTypes.object,
 }

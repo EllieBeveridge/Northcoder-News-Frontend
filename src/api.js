@@ -9,7 +9,6 @@ const withErrorHandling = (func) => {
 }
 
 export const fetchAllArticles = withErrorHandling(() => {
-  //insert normal fetchallarticles function
   return axios.get(`${DB_URL}/articles`)
     .then(({ data: { articles } }) => {
       return articles
@@ -59,12 +58,10 @@ export const voteOnArticle = ((article_id, direction) => {
       return article
     })
 })
-//add direction as a parameter and change to variable
 
 export const postArticle = (topic, newArticle) => {
   return axios.post(`${DB_URL}/topics/${topic}/articles`, newArticle)
     .then(({ data: { article } }) => {
-      console.log(article)
       return article
     })
     .catch(error => {
@@ -75,7 +72,6 @@ export const postArticle = (topic, newArticle) => {
 export const postComment = (newComment, article_id) => {
   return axios.post(`${DB_URL}/articles/${article_id}/comments`, newComment)
     .then(({ data: { comment } }) => {
-      console.log(comment)
       return comment
     })
     .catch(error => {
